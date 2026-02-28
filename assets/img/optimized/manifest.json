@@ -1,0 +1,757 @@
+{
+  "version": 1,
+  "generatedAt": "2026-02-14T19:29:52Z",
+  "count": 50,
+  "files": {
+    "unsplash-local/images/001_MbZwio-_IQU.jpg": {
+      "sizes": "(max-width: 860px) 92vw, (max-width: 1280px) 46vw, 33vw",
+      "avif": {
+        "srcset": "assets/img/optimized/22d71465b8590292-480.avif 480w, assets/img/optimized/22d71465b8590292-960.avif 960w, assets/img/optimized/22d71465b8590292-1600.avif 1600w, assets/img/optimized/22d71465b8590292-1800.avif 1800w"
+      },
+      "webp": {
+        "srcset": "assets/img/optimized/22d71465b8590292-480.webp 480w, assets/img/optimized/22d71465b8590292-960.webp 960w, assets/img/optimized/22d71465b8590292-1600.webp 1600w, assets/img/optimized/22d71465b8590292-1800.webp 1800w"
+      },
+      "jpg": {
+        "srcset": "assets/img/optimized/22d71465b8590292-480.jpg 480w, assets/img/optimized/22d71465b8590292-960.jpg 960w, assets/img/optimized/22d71465b8590292-1600.jpg 1600w, assets/img/optimized/22d71465b8590292-1800.jpg 1800w"
+      },
+      "fallback": "assets/img/optimized/22d71465b8590292-960.jpg",
+      "width": 1800,
+      "height": 2700
+    },
+    "unsplash-local/images/002_bi3HwXc4VKs.jpg": {
+      "sizes": "(max-width: 860px) 92vw, (max-width: 1280px) 46vw, 33vw",
+      "avif": {
+        "srcset": "assets/img/optimized/329cc466d222acb3-480.avif 480w, assets/img/optimized/329cc466d222acb3-960.avif 960w, assets/img/optimized/329cc466d222acb3-1600.avif 1600w, assets/img/optimized/329cc466d222acb3-1800.avif 1800w"
+      },
+      "webp": {
+        "srcset": "assets/img/optimized/329cc466d222acb3-480.webp 480w, assets/img/optimized/329cc466d222acb3-960.webp 960w, assets/img/optimized/329cc466d222acb3-1600.webp 1600w, assets/img/optimized/329cc466d222acb3-1800.webp 1800w"
+      },
+      "jpg": {
+        "srcset": "assets/img/optimized/329cc466d222acb3-480.jpg 480w, assets/img/optimized/329cc466d222acb3-960.jpg 960w, assets/img/optimized/329cc466d222acb3-1600.jpg 1600w, assets/img/optimized/329cc466d222acb3-1800.jpg 1800w"
+      },
+      "fallback": "assets/img/optimized/329cc466d222acb3-960.jpg",
+      "width": 1800,
+      "height": 2700
+    },
+    "unsplash-local/images/003_9q-erkZy94E.jpg": {
+      "sizes": "(max-width: 860px) 92vw, (max-width: 1280px) 46vw, 33vw",
+      "avif": {
+        "srcset": "assets/img/optimized/457ff585590cb15d-480.avif 480w, assets/img/optimized/457ff585590cb15d-960.avif 960w, assets/img/optimized/457ff585590cb15d-1600.avif 1600w, assets/img/optimized/457ff585590cb15d-1800.avif 1800w"
+      },
+      "webp": {
+        "srcset": "assets/img/optimized/457ff585590cb15d-480.webp 480w, assets/img/optimized/457ff585590cb15d-960.webp 960w, assets/img/optimized/457ff585590cb15d-1600.webp 1600w, assets/img/optimized/457ff585590cb15d-1800.webp 1800w"
+      },
+      "jpg": {
+        "srcset": "assets/img/optimized/457ff585590cb15d-480.jpg 480w, assets/img/optimized/457ff585590cb15d-960.jpg 960w, assets/img/optimized/457ff585590cb15d-1600.jpg 1600w, assets/img/optimized/457ff585590cb15d-1800.jpg 1800w"
+      },
+      "fallback": "assets/img/optimized/457ff585590cb15d-960.jpg",
+      "width": 1800,
+      "height": 2700
+    },
+    "unsplash-local/images/004_p8PldlzjJ-A.jpg": {
+      "sizes": "(max-width: 860px) 92vw, (max-width: 1280px) 46vw, 33vw",
+      "avif": {
+        "srcset": "assets/img/optimized/892c5ca0ed3a9888-480.avif 480w, assets/img/optimized/892c5ca0ed3a9888-960.avif 960w, assets/img/optimized/892c5ca0ed3a9888-1600.avif 1600w, assets/img/optimized/892c5ca0ed3a9888-1800.avif 1800w"
+      },
+      "webp": {
+        "srcset": "assets/img/optimized/892c5ca0ed3a9888-480.webp 480w, assets/img/optimized/892c5ca0ed3a9888-960.webp 960w, assets/img/optimized/892c5ca0ed3a9888-1600.webp 1600w, assets/img/optimized/892c5ca0ed3a9888-1800.webp 1800w"
+      },
+      "jpg": {
+        "srcset": "assets/img/optimized/892c5ca0ed3a9888-480.jpg 480w, assets/img/optimized/892c5ca0ed3a9888-960.jpg 960w, assets/img/optimized/892c5ca0ed3a9888-1600.jpg 1600w, assets/img/optimized/892c5ca0ed3a9888-1800.jpg 1800w"
+      },
+      "fallback": "assets/img/optimized/892c5ca0ed3a9888-960.jpg",
+      "width": 1800,
+      "height": 1247
+    },
+    "unsplash-local/images/005__J1NlDCM2VE.jpg": {
+      "sizes": "(max-width: 860px) 92vw, (max-width: 1280px) 46vw, 33vw",
+      "avif": {
+        "srcset": "assets/img/optimized/a9d6906b607a85d7-480.avif 480w, assets/img/optimized/a9d6906b607a85d7-960.avif 960w, assets/img/optimized/a9d6906b607a85d7-1600.avif 1600w, assets/img/optimized/a9d6906b607a85d7-1800.avif 1800w"
+      },
+      "webp": {
+        "srcset": "assets/img/optimized/a9d6906b607a85d7-480.webp 480w, assets/img/optimized/a9d6906b607a85d7-960.webp 960w, assets/img/optimized/a9d6906b607a85d7-1600.webp 1600w, assets/img/optimized/a9d6906b607a85d7-1800.webp 1800w"
+      },
+      "jpg": {
+        "srcset": "assets/img/optimized/a9d6906b607a85d7-480.jpg 480w, assets/img/optimized/a9d6906b607a85d7-960.jpg 960w, assets/img/optimized/a9d6906b607a85d7-1600.jpg 1600w, assets/img/optimized/a9d6906b607a85d7-1800.jpg 1800w"
+      },
+      "fallback": "assets/img/optimized/a9d6906b607a85d7-960.jpg",
+      "width": 1800,
+      "height": 2700
+    },
+    "unsplash-local/images/006_h0oA9-f3b44.jpg": {
+      "sizes": "(max-width: 860px) 92vw, (max-width: 1280px) 46vw, 33vw",
+      "avif": {
+        "srcset": "assets/img/optimized/3a65e073a2991372-480.avif 480w, assets/img/optimized/3a65e073a2991372-960.avif 960w, assets/img/optimized/3a65e073a2991372-1600.avif 1600w, assets/img/optimized/3a65e073a2991372-1800.avif 1800w"
+      },
+      "webp": {
+        "srcset": "assets/img/optimized/3a65e073a2991372-480.webp 480w, assets/img/optimized/3a65e073a2991372-960.webp 960w, assets/img/optimized/3a65e073a2991372-1600.webp 1600w, assets/img/optimized/3a65e073a2991372-1800.webp 1800w"
+      },
+      "jpg": {
+        "srcset": "assets/img/optimized/3a65e073a2991372-480.jpg 480w, assets/img/optimized/3a65e073a2991372-960.jpg 960w, assets/img/optimized/3a65e073a2991372-1600.jpg 1600w, assets/img/optimized/3a65e073a2991372-1800.jpg 1800w"
+      },
+      "fallback": "assets/img/optimized/3a65e073a2991372-960.jpg",
+      "width": 1800,
+      "height": 2700
+    },
+    "unsplash-local/images/007_YT1csCnbb78.jpg": {
+      "sizes": "(max-width: 860px) 92vw, (max-width: 1280px) 46vw, 33vw",
+      "avif": {
+        "srcset": "assets/img/optimized/465e2453ce6212b3-480.avif 480w, assets/img/optimized/465e2453ce6212b3-960.avif 960w, assets/img/optimized/465e2453ce6212b3-1600.avif 1600w, assets/img/optimized/465e2453ce6212b3-1800.avif 1800w"
+      },
+      "webp": {
+        "srcset": "assets/img/optimized/465e2453ce6212b3-480.webp 480w, assets/img/optimized/465e2453ce6212b3-960.webp 960w, assets/img/optimized/465e2453ce6212b3-1600.webp 1600w, assets/img/optimized/465e2453ce6212b3-1800.webp 1800w"
+      },
+      "jpg": {
+        "srcset": "assets/img/optimized/465e2453ce6212b3-480.jpg 480w, assets/img/optimized/465e2453ce6212b3-960.jpg 960w, assets/img/optimized/465e2453ce6212b3-1600.jpg 1600w, assets/img/optimized/465e2453ce6212b3-1800.jpg 1800w"
+      },
+      "fallback": "assets/img/optimized/465e2453ce6212b3-960.jpg",
+      "width": 1800,
+      "height": 2700
+    },
+    "unsplash-local/images/008_H8Vvpn4NezI.jpg": {
+      "sizes": "(max-width: 860px) 92vw, (max-width: 1280px) 46vw, 33vw",
+      "avif": {
+        "srcset": "assets/img/optimized/8af2f2e43cef469f-480.avif 480w, assets/img/optimized/8af2f2e43cef469f-960.avif 960w, assets/img/optimized/8af2f2e43cef469f-1600.avif 1600w, assets/img/optimized/8af2f2e43cef469f-1800.avif 1800w"
+      },
+      "webp": {
+        "srcset": "assets/img/optimized/8af2f2e43cef469f-480.webp 480w, assets/img/optimized/8af2f2e43cef469f-960.webp 960w, assets/img/optimized/8af2f2e43cef469f-1600.webp 1600w, assets/img/optimized/8af2f2e43cef469f-1800.webp 1800w"
+      },
+      "jpg": {
+        "srcset": "assets/img/optimized/8af2f2e43cef469f-480.jpg 480w, assets/img/optimized/8af2f2e43cef469f-960.jpg 960w, assets/img/optimized/8af2f2e43cef469f-1600.jpg 1600w, assets/img/optimized/8af2f2e43cef469f-1800.jpg 1800w"
+      },
+      "fallback": "assets/img/optimized/8af2f2e43cef469f-960.jpg",
+      "width": 1800,
+      "height": 2700
+    },
+    "unsplash-local/images/009_jGw71V9EyPQ.jpg": {
+      "sizes": "(max-width: 860px) 92vw, (max-width: 1280px) 46vw, 33vw",
+      "avif": {
+        "srcset": "assets/img/optimized/9cfc8c67d3b62dad-480.avif 480w, assets/img/optimized/9cfc8c67d3b62dad-960.avif 960w, assets/img/optimized/9cfc8c67d3b62dad-1600.avif 1600w, assets/img/optimized/9cfc8c67d3b62dad-1800.avif 1800w"
+      },
+      "webp": {
+        "srcset": "assets/img/optimized/9cfc8c67d3b62dad-480.webp 480w, assets/img/optimized/9cfc8c67d3b62dad-960.webp 960w, assets/img/optimized/9cfc8c67d3b62dad-1600.webp 1600w, assets/img/optimized/9cfc8c67d3b62dad-1800.webp 1800w"
+      },
+      "jpg": {
+        "srcset": "assets/img/optimized/9cfc8c67d3b62dad-480.jpg 480w, assets/img/optimized/9cfc8c67d3b62dad-960.jpg 960w, assets/img/optimized/9cfc8c67d3b62dad-1600.jpg 1600w, assets/img/optimized/9cfc8c67d3b62dad-1800.jpg 1800w"
+      },
+      "fallback": "assets/img/optimized/9cfc8c67d3b62dad-960.jpg",
+      "width": 1800,
+      "height": 2700
+    },
+    "unsplash-local/images/010_0EQNGVRASsU.jpg": {
+      "sizes": "(max-width: 860px) 92vw, (max-width: 1280px) 46vw, 33vw",
+      "avif": {
+        "srcset": "assets/img/optimized/3606d84749046806-480.avif 480w, assets/img/optimized/3606d84749046806-960.avif 960w, assets/img/optimized/3606d84749046806-1600.avif 1600w, assets/img/optimized/3606d84749046806-1800.avif 1800w"
+      },
+      "webp": {
+        "srcset": "assets/img/optimized/3606d84749046806-480.webp 480w, assets/img/optimized/3606d84749046806-960.webp 960w, assets/img/optimized/3606d84749046806-1600.webp 1600w, assets/img/optimized/3606d84749046806-1800.webp 1800w"
+      },
+      "jpg": {
+        "srcset": "assets/img/optimized/3606d84749046806-480.jpg 480w, assets/img/optimized/3606d84749046806-960.jpg 960w, assets/img/optimized/3606d84749046806-1600.jpg 1600w, assets/img/optimized/3606d84749046806-1800.jpg 1800w"
+      },
+      "fallback": "assets/img/optimized/3606d84749046806-960.jpg",
+      "width": 1800,
+      "height": 1200
+    },
+    "unsplash-local/images/011_TITQKYpqXdE.jpg": {
+      "sizes": "(max-width: 860px) 92vw, (max-width: 1280px) 46vw, 33vw",
+      "avif": {
+        "srcset": "assets/img/optimized/7815dd87161166b0-480.avif 480w, assets/img/optimized/7815dd87161166b0-960.avif 960w, assets/img/optimized/7815dd87161166b0-1600.avif 1600w, assets/img/optimized/7815dd87161166b0-1800.avif 1800w"
+      },
+      "webp": {
+        "srcset": "assets/img/optimized/7815dd87161166b0-480.webp 480w, assets/img/optimized/7815dd87161166b0-960.webp 960w, assets/img/optimized/7815dd87161166b0-1600.webp 1600w, assets/img/optimized/7815dd87161166b0-1800.webp 1800w"
+      },
+      "jpg": {
+        "srcset": "assets/img/optimized/7815dd87161166b0-480.jpg 480w, assets/img/optimized/7815dd87161166b0-960.jpg 960w, assets/img/optimized/7815dd87161166b0-1600.jpg 1600w, assets/img/optimized/7815dd87161166b0-1800.jpg 1800w"
+      },
+      "fallback": "assets/img/optimized/7815dd87161166b0-960.jpg",
+      "width": 1800,
+      "height": 2700
+    },
+    "unsplash-local/images/012_Y9E__ElAgvs.jpg": {
+      "sizes": "(max-width: 860px) 92vw, (max-width: 1280px) 46vw, 33vw",
+      "avif": {
+        "srcset": "assets/img/optimized/bbf6f7c25c35bf33-480.avif 480w, assets/img/optimized/bbf6f7c25c35bf33-960.avif 960w, assets/img/optimized/bbf6f7c25c35bf33-1600.avif 1600w, assets/img/optimized/bbf6f7c25c35bf33-1800.avif 1800w"
+      },
+      "webp": {
+        "srcset": "assets/img/optimized/bbf6f7c25c35bf33-480.webp 480w, assets/img/optimized/bbf6f7c25c35bf33-960.webp 960w, assets/img/optimized/bbf6f7c25c35bf33-1600.webp 1600w, assets/img/optimized/bbf6f7c25c35bf33-1800.webp 1800w"
+      },
+      "jpg": {
+        "srcset": "assets/img/optimized/bbf6f7c25c35bf33-480.jpg 480w, assets/img/optimized/bbf6f7c25c35bf33-960.jpg 960w, assets/img/optimized/bbf6f7c25c35bf33-1600.jpg 1600w, assets/img/optimized/bbf6f7c25c35bf33-1800.jpg 1800w"
+      },
+      "fallback": "assets/img/optimized/bbf6f7c25c35bf33-960.jpg",
+      "width": 1800,
+      "height": 2700
+    },
+    "unsplash-local/images/013_JYyVLH5gM34.jpg": {
+      "sizes": "(max-width: 860px) 92vw, (max-width: 1280px) 46vw, 33vw",
+      "avif": {
+        "srcset": "assets/img/optimized/e8bb8c3df43559ae-480.avif 480w, assets/img/optimized/e8bb8c3df43559ae-960.avif 960w, assets/img/optimized/e8bb8c3df43559ae-1600.avif 1600w, assets/img/optimized/e8bb8c3df43559ae-1800.avif 1800w"
+      },
+      "webp": {
+        "srcset": "assets/img/optimized/e8bb8c3df43559ae-480.webp 480w, assets/img/optimized/e8bb8c3df43559ae-960.webp 960w, assets/img/optimized/e8bb8c3df43559ae-1600.webp 1600w, assets/img/optimized/e8bb8c3df43559ae-1800.webp 1800w"
+      },
+      "jpg": {
+        "srcset": "assets/img/optimized/e8bb8c3df43559ae-480.jpg 480w, assets/img/optimized/e8bb8c3df43559ae-960.jpg 960w, assets/img/optimized/e8bb8c3df43559ae-1600.jpg 1600w, assets/img/optimized/e8bb8c3df43559ae-1800.jpg 1800w"
+      },
+      "fallback": "assets/img/optimized/e8bb8c3df43559ae-960.jpg",
+      "width": 1800,
+      "height": 2700
+    },
+    "unsplash-local/images/014_CYwAbpadF4k.jpg": {
+      "sizes": "(max-width: 860px) 92vw, (max-width: 1280px) 46vw, 33vw",
+      "avif": {
+        "srcset": "assets/img/optimized/5bb543be0f377cfd-480.avif 480w, assets/img/optimized/5bb543be0f377cfd-960.avif 960w, assets/img/optimized/5bb543be0f377cfd-1600.avif 1600w, assets/img/optimized/5bb543be0f377cfd-1800.avif 1800w"
+      },
+      "webp": {
+        "srcset": "assets/img/optimized/5bb543be0f377cfd-480.webp 480w, assets/img/optimized/5bb543be0f377cfd-960.webp 960w, assets/img/optimized/5bb543be0f377cfd-1600.webp 1600w, assets/img/optimized/5bb543be0f377cfd-1800.webp 1800w"
+      },
+      "jpg": {
+        "srcset": "assets/img/optimized/5bb543be0f377cfd-480.jpg 480w, assets/img/optimized/5bb543be0f377cfd-960.jpg 960w, assets/img/optimized/5bb543be0f377cfd-1600.jpg 1600w, assets/img/optimized/5bb543be0f377cfd-1800.jpg 1800w"
+      },
+      "fallback": "assets/img/optimized/5bb543be0f377cfd-960.jpg",
+      "width": 1800,
+      "height": 2700
+    },
+    "unsplash-local/images/015_b5h5rD6gEKo.jpg": {
+      "sizes": "(max-width: 860px) 92vw, (max-width: 1280px) 46vw, 33vw",
+      "avif": {
+        "srcset": "assets/img/optimized/30e1c76150d70870-480.avif 480w, assets/img/optimized/30e1c76150d70870-960.avif 960w, assets/img/optimized/30e1c76150d70870-1600.avif 1600w, assets/img/optimized/30e1c76150d70870-1800.avif 1800w"
+      },
+      "webp": {
+        "srcset": "assets/img/optimized/30e1c76150d70870-480.webp 480w, assets/img/optimized/30e1c76150d70870-960.webp 960w, assets/img/optimized/30e1c76150d70870-1600.webp 1600w, assets/img/optimized/30e1c76150d70870-1800.webp 1800w"
+      },
+      "jpg": {
+        "srcset": "assets/img/optimized/30e1c76150d70870-480.jpg 480w, assets/img/optimized/30e1c76150d70870-960.jpg 960w, assets/img/optimized/30e1c76150d70870-1600.jpg 1600w, assets/img/optimized/30e1c76150d70870-1800.jpg 1800w"
+      },
+      "fallback": "assets/img/optimized/30e1c76150d70870-960.jpg",
+      "width": 1800,
+      "height": 1200
+    },
+    "unsplash-local/images/016__2r05WCBe4A.jpg": {
+      "sizes": "(max-width: 860px) 92vw, (max-width: 1280px) 46vw, 33vw",
+      "avif": {
+        "srcset": "assets/img/optimized/4b81c42a3a071ff9-480.avif 480w, assets/img/optimized/4b81c42a3a071ff9-960.avif 960w, assets/img/optimized/4b81c42a3a071ff9-1600.avif 1600w, assets/img/optimized/4b81c42a3a071ff9-1800.avif 1800w"
+      },
+      "webp": {
+        "srcset": "assets/img/optimized/4b81c42a3a071ff9-480.webp 480w, assets/img/optimized/4b81c42a3a071ff9-960.webp 960w, assets/img/optimized/4b81c42a3a071ff9-1600.webp 1600w, assets/img/optimized/4b81c42a3a071ff9-1800.webp 1800w"
+      },
+      "jpg": {
+        "srcset": "assets/img/optimized/4b81c42a3a071ff9-480.jpg 480w, assets/img/optimized/4b81c42a3a071ff9-960.jpg 960w, assets/img/optimized/4b81c42a3a071ff9-1600.jpg 1600w, assets/img/optimized/4b81c42a3a071ff9-1800.jpg 1800w"
+      },
+      "fallback": "assets/img/optimized/4b81c42a3a071ff9-960.jpg",
+      "width": 1800,
+      "height": 2700
+    },
+    "unsplash-local/images/017_jn0XimU4ceg.jpg": {
+      "sizes": "(max-width: 860px) 92vw, (max-width: 1280px) 46vw, 33vw",
+      "avif": {
+        "srcset": "assets/img/optimized/7748e45e2f101cb8-480.avif 480w, assets/img/optimized/7748e45e2f101cb8-960.avif 960w, assets/img/optimized/7748e45e2f101cb8-1600.avif 1600w, assets/img/optimized/7748e45e2f101cb8-1800.avif 1800w"
+      },
+      "webp": {
+        "srcset": "assets/img/optimized/7748e45e2f101cb8-480.webp 480w, assets/img/optimized/7748e45e2f101cb8-960.webp 960w, assets/img/optimized/7748e45e2f101cb8-1600.webp 1600w, assets/img/optimized/7748e45e2f101cb8-1800.webp 1800w"
+      },
+      "jpg": {
+        "srcset": "assets/img/optimized/7748e45e2f101cb8-480.jpg 480w, assets/img/optimized/7748e45e2f101cb8-960.jpg 960w, assets/img/optimized/7748e45e2f101cb8-1600.jpg 1600w, assets/img/optimized/7748e45e2f101cb8-1800.jpg 1800w"
+      },
+      "fallback": "assets/img/optimized/7748e45e2f101cb8-960.jpg",
+      "width": 1800,
+      "height": 1200
+    },
+    "unsplash-local/images/018_a99PsOEeBw8.jpg": {
+      "sizes": "(max-width: 860px) 92vw, (max-width: 1280px) 46vw, 33vw",
+      "avif": {
+        "srcset": "assets/img/optimized/cda9864a8c2949ff-480.avif 480w, assets/img/optimized/cda9864a8c2949ff-960.avif 960w, assets/img/optimized/cda9864a8c2949ff-1600.avif 1600w, assets/img/optimized/cda9864a8c2949ff-1800.avif 1800w"
+      },
+      "webp": {
+        "srcset": "assets/img/optimized/cda9864a8c2949ff-480.webp 480w, assets/img/optimized/cda9864a8c2949ff-960.webp 960w, assets/img/optimized/cda9864a8c2949ff-1600.webp 1600w, assets/img/optimized/cda9864a8c2949ff-1800.webp 1800w"
+      },
+      "jpg": {
+        "srcset": "assets/img/optimized/cda9864a8c2949ff-480.jpg 480w, assets/img/optimized/cda9864a8c2949ff-960.jpg 960w, assets/img/optimized/cda9864a8c2949ff-1600.jpg 1600w, assets/img/optimized/cda9864a8c2949ff-1800.jpg 1800w"
+      },
+      "fallback": "assets/img/optimized/cda9864a8c2949ff-960.jpg",
+      "width": 1800,
+      "height": 2922
+    },
+    "unsplash-local/images/019_5nce_guA3nc.jpg": {
+      "sizes": "(max-width: 860px) 92vw, (max-width: 1280px) 46vw, 33vw",
+      "avif": {
+        "srcset": "assets/img/optimized/e4baa0957a2e60f4-480.avif 480w, assets/img/optimized/e4baa0957a2e60f4-960.avif 960w, assets/img/optimized/e4baa0957a2e60f4-1600.avif 1600w, assets/img/optimized/e4baa0957a2e60f4-1800.avif 1800w"
+      },
+      "webp": {
+        "srcset": "assets/img/optimized/e4baa0957a2e60f4-480.webp 480w, assets/img/optimized/e4baa0957a2e60f4-960.webp 960w, assets/img/optimized/e4baa0957a2e60f4-1600.webp 1600w, assets/img/optimized/e4baa0957a2e60f4-1800.webp 1800w"
+      },
+      "jpg": {
+        "srcset": "assets/img/optimized/e4baa0957a2e60f4-480.jpg 480w, assets/img/optimized/e4baa0957a2e60f4-960.jpg 960w, assets/img/optimized/e4baa0957a2e60f4-1600.jpg 1600w, assets/img/optimized/e4baa0957a2e60f4-1800.jpg 1800w"
+      },
+      "fallback": "assets/img/optimized/e4baa0957a2e60f4-960.jpg",
+      "width": 1800,
+      "height": 2700
+    },
+    "unsplash-local/images/020_BunBojPOcKc.jpg": {
+      "sizes": "(max-width: 860px) 92vw, (max-width: 1280px) 46vw, 33vw",
+      "avif": {
+        "srcset": "assets/img/optimized/c387d92ca4e1d40f-480.avif 480w, assets/img/optimized/c387d92ca4e1d40f-960.avif 960w, assets/img/optimized/c387d92ca4e1d40f-1600.avif 1600w, assets/img/optimized/c387d92ca4e1d40f-1800.avif 1800w"
+      },
+      "webp": {
+        "srcset": "assets/img/optimized/c387d92ca4e1d40f-480.webp 480w, assets/img/optimized/c387d92ca4e1d40f-960.webp 960w, assets/img/optimized/c387d92ca4e1d40f-1600.webp 1600w, assets/img/optimized/c387d92ca4e1d40f-1800.webp 1800w"
+      },
+      "jpg": {
+        "srcset": "assets/img/optimized/c387d92ca4e1d40f-480.jpg 480w, assets/img/optimized/c387d92ca4e1d40f-960.jpg 960w, assets/img/optimized/c387d92ca4e1d40f-1600.jpg 1600w, assets/img/optimized/c387d92ca4e1d40f-1800.jpg 1800w"
+      },
+      "fallback": "assets/img/optimized/c387d92ca4e1d40f-960.jpg",
+      "width": 1800,
+      "height": 1200
+    },
+    "unsplash-local/images/021_Qig7rFdeNf0.jpg": {
+      "sizes": "(max-width: 860px) 92vw, (max-width: 1280px) 46vw, 33vw",
+      "avif": {
+        "srcset": "assets/img/optimized/b6a8a7bc867da104-480.avif 480w, assets/img/optimized/b6a8a7bc867da104-960.avif 960w, assets/img/optimized/b6a8a7bc867da104-1600.avif 1600w, assets/img/optimized/b6a8a7bc867da104-1800.avif 1800w"
+      },
+      "webp": {
+        "srcset": "assets/img/optimized/b6a8a7bc867da104-480.webp 480w, assets/img/optimized/b6a8a7bc867da104-960.webp 960w, assets/img/optimized/b6a8a7bc867da104-1600.webp 1600w, assets/img/optimized/b6a8a7bc867da104-1800.webp 1800w"
+      },
+      "jpg": {
+        "srcset": "assets/img/optimized/b6a8a7bc867da104-480.jpg 480w, assets/img/optimized/b6a8a7bc867da104-960.jpg 960w, assets/img/optimized/b6a8a7bc867da104-1600.jpg 1600w, assets/img/optimized/b6a8a7bc867da104-1800.jpg 1800w"
+      },
+      "fallback": "assets/img/optimized/b6a8a7bc867da104-960.jpg",
+      "width": 1800,
+      "height": 1200
+    },
+    "unsplash-local/images/022_AtgE8Q8frw4.jpg": {
+      "sizes": "(max-width: 860px) 92vw, (max-width: 1280px) 46vw, 33vw",
+      "avif": {
+        "srcset": "assets/img/optimized/51fd2a86b37338eb-480.avif 480w, assets/img/optimized/51fd2a86b37338eb-960.avif 960w, assets/img/optimized/51fd2a86b37338eb-1600.avif 1600w, assets/img/optimized/51fd2a86b37338eb-1800.avif 1800w"
+      },
+      "webp": {
+        "srcset": "assets/img/optimized/51fd2a86b37338eb-480.webp 480w, assets/img/optimized/51fd2a86b37338eb-960.webp 960w, assets/img/optimized/51fd2a86b37338eb-1600.webp 1600w, assets/img/optimized/51fd2a86b37338eb-1800.webp 1800w"
+      },
+      "jpg": {
+        "srcset": "assets/img/optimized/51fd2a86b37338eb-480.jpg 480w, assets/img/optimized/51fd2a86b37338eb-960.jpg 960w, assets/img/optimized/51fd2a86b37338eb-1600.jpg 1600w, assets/img/optimized/51fd2a86b37338eb-1800.jpg 1800w"
+      },
+      "fallback": "assets/img/optimized/51fd2a86b37338eb-960.jpg",
+      "width": 1800,
+      "height": 1200
+    },
+    "unsplash-local/images/023_YClAwlujzHY.jpg": {
+      "sizes": "(max-width: 860px) 92vw, (max-width: 1280px) 46vw, 33vw",
+      "avif": {
+        "srcset": "assets/img/optimized/68f77cc7e9ec6e10-480.avif 480w, assets/img/optimized/68f77cc7e9ec6e10-960.avif 960w, assets/img/optimized/68f77cc7e9ec6e10-1600.avif 1600w, assets/img/optimized/68f77cc7e9ec6e10-1800.avif 1800w"
+      },
+      "webp": {
+        "srcset": "assets/img/optimized/68f77cc7e9ec6e10-480.webp 480w, assets/img/optimized/68f77cc7e9ec6e10-960.webp 960w, assets/img/optimized/68f77cc7e9ec6e10-1600.webp 1600w, assets/img/optimized/68f77cc7e9ec6e10-1800.webp 1800w"
+      },
+      "jpg": {
+        "srcset": "assets/img/optimized/68f77cc7e9ec6e10-480.jpg 480w, assets/img/optimized/68f77cc7e9ec6e10-960.jpg 960w, assets/img/optimized/68f77cc7e9ec6e10-1600.jpg 1600w, assets/img/optimized/68f77cc7e9ec6e10-1800.jpg 1800w"
+      },
+      "fallback": "assets/img/optimized/68f77cc7e9ec6e10-960.jpg",
+      "width": 1800,
+      "height": 2701
+    },
+    "unsplash-local/images/024_LeoFFzTfOOo.jpg": {
+      "sizes": "(max-width: 860px) 92vw, (max-width: 1280px) 46vw, 33vw",
+      "avif": {
+        "srcset": "assets/img/optimized/b8e24533fcd6b808-480.avif 480w, assets/img/optimized/b8e24533fcd6b808-960.avif 960w, assets/img/optimized/b8e24533fcd6b808-1600.avif 1600w, assets/img/optimized/b8e24533fcd6b808-1800.avif 1800w"
+      },
+      "webp": {
+        "srcset": "assets/img/optimized/b8e24533fcd6b808-480.webp 480w, assets/img/optimized/b8e24533fcd6b808-960.webp 960w, assets/img/optimized/b8e24533fcd6b808-1600.webp 1600w, assets/img/optimized/b8e24533fcd6b808-1800.webp 1800w"
+      },
+      "jpg": {
+        "srcset": "assets/img/optimized/b8e24533fcd6b808-480.jpg 480w, assets/img/optimized/b8e24533fcd6b808-960.jpg 960w, assets/img/optimized/b8e24533fcd6b808-1600.jpg 1600w, assets/img/optimized/b8e24533fcd6b808-1800.jpg 1800w"
+      },
+      "fallback": "assets/img/optimized/b8e24533fcd6b808-960.jpg",
+      "width": 1800,
+      "height": 1200
+    },
+    "unsplash-local/images/025_1uSAnWn5OpE.jpg": {
+      "sizes": "(max-width: 860px) 92vw, (max-width: 1280px) 46vw, 33vw",
+      "avif": {
+        "srcset": "assets/img/optimized/c775fdfab5e75eed-480.avif 480w, assets/img/optimized/c775fdfab5e75eed-960.avif 960w, assets/img/optimized/c775fdfab5e75eed-1600.avif 1600w, assets/img/optimized/c775fdfab5e75eed-1800.avif 1800w"
+      },
+      "webp": {
+        "srcset": "assets/img/optimized/c775fdfab5e75eed-480.webp 480w, assets/img/optimized/c775fdfab5e75eed-960.webp 960w, assets/img/optimized/c775fdfab5e75eed-1600.webp 1600w, assets/img/optimized/c775fdfab5e75eed-1800.webp 1800w"
+      },
+      "jpg": {
+        "srcset": "assets/img/optimized/c775fdfab5e75eed-480.jpg 480w, assets/img/optimized/c775fdfab5e75eed-960.jpg 960w, assets/img/optimized/c775fdfab5e75eed-1600.jpg 1600w, assets/img/optimized/c775fdfab5e75eed-1800.jpg 1800w"
+      },
+      "fallback": "assets/img/optimized/c775fdfab5e75eed-960.jpg",
+      "width": 1800,
+      "height": 1200
+    },
+    "unsplash-local/images/026_dYeK1zr17aM.jpg": {
+      "sizes": "(max-width: 860px) 92vw, (max-width: 1280px) 46vw, 33vw",
+      "avif": {
+        "srcset": "assets/img/optimized/2f43cb0cad72be69-480.avif 480w, assets/img/optimized/2f43cb0cad72be69-960.avif 960w, assets/img/optimized/2f43cb0cad72be69-1600.avif 1600w, assets/img/optimized/2f43cb0cad72be69-1800.avif 1800w"
+      },
+      "webp": {
+        "srcset": "assets/img/optimized/2f43cb0cad72be69-480.webp 480w, assets/img/optimized/2f43cb0cad72be69-960.webp 960w, assets/img/optimized/2f43cb0cad72be69-1600.webp 1600w, assets/img/optimized/2f43cb0cad72be69-1800.webp 1800w"
+      },
+      "jpg": {
+        "srcset": "assets/img/optimized/2f43cb0cad72be69-480.jpg 480w, assets/img/optimized/2f43cb0cad72be69-960.jpg 960w, assets/img/optimized/2f43cb0cad72be69-1600.jpg 1600w, assets/img/optimized/2f43cb0cad72be69-1800.jpg 1800w"
+      },
+      "fallback": "assets/img/optimized/2f43cb0cad72be69-960.jpg",
+      "width": 1800,
+      "height": 2700
+    },
+    "unsplash-local/images/027_PN6GhMvlrMQ.jpg": {
+      "sizes": "(max-width: 860px) 92vw, (max-width: 1280px) 46vw, 33vw",
+      "avif": {
+        "srcset": "assets/img/optimized/5451ca2e760d1f0d-480.avif 480w, assets/img/optimized/5451ca2e760d1f0d-960.avif 960w, assets/img/optimized/5451ca2e760d1f0d-1600.avif 1600w, assets/img/optimized/5451ca2e760d1f0d-1800.avif 1800w"
+      },
+      "webp": {
+        "srcset": "assets/img/optimized/5451ca2e760d1f0d-480.webp 480w, assets/img/optimized/5451ca2e760d1f0d-960.webp 960w, assets/img/optimized/5451ca2e760d1f0d-1600.webp 1600w, assets/img/optimized/5451ca2e760d1f0d-1800.webp 1800w"
+      },
+      "jpg": {
+        "srcset": "assets/img/optimized/5451ca2e760d1f0d-480.jpg 480w, assets/img/optimized/5451ca2e760d1f0d-960.jpg 960w, assets/img/optimized/5451ca2e760d1f0d-1600.jpg 1600w, assets/img/optimized/5451ca2e760d1f0d-1800.jpg 1800w"
+      },
+      "fallback": "assets/img/optimized/5451ca2e760d1f0d-960.jpg",
+      "width": 1800,
+      "height": 2700
+    },
+    "unsplash-local/images/028_6Cz-lrEuCvM.jpg": {
+      "sizes": "(max-width: 860px) 92vw, (max-width: 1280px) 46vw, 33vw",
+      "avif": {
+        "srcset": "assets/img/optimized/65bb0b7c37d2a659-480.avif 480w, assets/img/optimized/65bb0b7c37d2a659-960.avif 960w, assets/img/optimized/65bb0b7c37d2a659-1600.avif 1600w, assets/img/optimized/65bb0b7c37d2a659-1800.avif 1800w"
+      },
+      "webp": {
+        "srcset": "assets/img/optimized/65bb0b7c37d2a659-480.webp 480w, assets/img/optimized/65bb0b7c37d2a659-960.webp 960w, assets/img/optimized/65bb0b7c37d2a659-1600.webp 1600w, assets/img/optimized/65bb0b7c37d2a659-1800.webp 1800w"
+      },
+      "jpg": {
+        "srcset": "assets/img/optimized/65bb0b7c37d2a659-480.jpg 480w, assets/img/optimized/65bb0b7c37d2a659-960.jpg 960w, assets/img/optimized/65bb0b7c37d2a659-1600.jpg 1600w, assets/img/optimized/65bb0b7c37d2a659-1800.jpg 1800w"
+      },
+      "fallback": "assets/img/optimized/65bb0b7c37d2a659-960.jpg",
+      "width": 1800,
+      "height": 2700
+    },
+    "unsplash-local/images/029_KSaOkR1JWIg.jpg": {
+      "sizes": "(max-width: 860px) 92vw, (max-width: 1280px) 46vw, 33vw",
+      "avif": {
+        "srcset": "assets/img/optimized/9aad172d4b3ca59d-480.avif 480w, assets/img/optimized/9aad172d4b3ca59d-960.avif 960w, assets/img/optimized/9aad172d4b3ca59d-1600.avif 1600w, assets/img/optimized/9aad172d4b3ca59d-1800.avif 1800w"
+      },
+      "webp": {
+        "srcset": "assets/img/optimized/9aad172d4b3ca59d-480.webp 480w, assets/img/optimized/9aad172d4b3ca59d-960.webp 960w, assets/img/optimized/9aad172d4b3ca59d-1600.webp 1600w, assets/img/optimized/9aad172d4b3ca59d-1800.webp 1800w"
+      },
+      "jpg": {
+        "srcset": "assets/img/optimized/9aad172d4b3ca59d-480.jpg 480w, assets/img/optimized/9aad172d4b3ca59d-960.jpg 960w, assets/img/optimized/9aad172d4b3ca59d-1600.jpg 1600w, assets/img/optimized/9aad172d4b3ca59d-1800.jpg 1800w"
+      },
+      "fallback": "assets/img/optimized/9aad172d4b3ca59d-960.jpg",
+      "width": 1800,
+      "height": 2700
+    },
+    "unsplash-local/images/030_MCDiZogqMAc.jpg": {
+      "sizes": "(max-width: 860px) 92vw, (max-width: 1280px) 46vw, 33vw",
+      "avif": {
+        "srcset": "assets/img/optimized/ad8e8f634feb517e-480.avif 480w, assets/img/optimized/ad8e8f634feb517e-960.avif 960w, assets/img/optimized/ad8e8f634feb517e-1600.avif 1600w, assets/img/optimized/ad8e8f634feb517e-1800.avif 1800w"
+      },
+      "webp": {
+        "srcset": "assets/img/optimized/ad8e8f634feb517e-480.webp 480w, assets/img/optimized/ad8e8f634feb517e-960.webp 960w, assets/img/optimized/ad8e8f634feb517e-1600.webp 1600w, assets/img/optimized/ad8e8f634feb517e-1800.webp 1800w"
+      },
+      "jpg": {
+        "srcset": "assets/img/optimized/ad8e8f634feb517e-480.jpg 480w, assets/img/optimized/ad8e8f634feb517e-960.jpg 960w, assets/img/optimized/ad8e8f634feb517e-1600.jpg 1600w, assets/img/optimized/ad8e8f634feb517e-1800.jpg 1800w"
+      },
+      "fallback": "assets/img/optimized/ad8e8f634feb517e-960.jpg",
+      "width": 1800,
+      "height": 2700
+    },
+    "Креативные съёмки/IMG_4472_1.jpg": {
+      "sizes": "(max-width: 860px) 92vw, (max-width: 1280px) 46vw, 33vw",
+      "avif": {
+        "srcset": "assets/img/optimized/0d5af85d390fada0-480.avif 480w, assets/img/optimized/0d5af85d390fada0-960.avif 960w, assets/img/optimized/0d5af85d390fada0-1600.avif 1600w, assets/img/optimized/0d5af85d390fada0-1920.avif 1920w"
+      },
+      "webp": {
+        "srcset": "assets/img/optimized/0d5af85d390fada0-480.webp 480w, assets/img/optimized/0d5af85d390fada0-960.webp 960w, assets/img/optimized/0d5af85d390fada0-1600.webp 1600w, assets/img/optimized/0d5af85d390fada0-1920.webp 1920w"
+      },
+      "jpg": {
+        "srcset": "assets/img/optimized/0d5af85d390fada0-480.jpg 480w, assets/img/optimized/0d5af85d390fada0-960.jpg 960w, assets/img/optimized/0d5af85d390fada0-1600.jpg 1600w, assets/img/optimized/0d5af85d390fada0-1920.jpg 1920w"
+      },
+      "fallback": "assets/img/optimized/0d5af85d390fada0-960.jpg",
+      "width": 1920,
+      "height": 2880
+    },
+    "Креативные съёмки/IMG_6990_1.jpg": {
+      "sizes": "(max-width: 860px) 92vw, (max-width: 1280px) 46vw, 33vw",
+      "avif": {
+        "srcset": "assets/img/optimized/be4da56254e796fa-480.avif 480w, assets/img/optimized/be4da56254e796fa-960.avif 960w, assets/img/optimized/be4da56254e796fa-1600.avif 1600w, assets/img/optimized/be4da56254e796fa-1920.avif 1920w"
+      },
+      "webp": {
+        "srcset": "assets/img/optimized/be4da56254e796fa-480.webp 480w, assets/img/optimized/be4da56254e796fa-960.webp 960w, assets/img/optimized/be4da56254e796fa-1600.webp 1600w, assets/img/optimized/be4da56254e796fa-1920.webp 1920w"
+      },
+      "jpg": {
+        "srcset": "assets/img/optimized/be4da56254e796fa-480.jpg 480w, assets/img/optimized/be4da56254e796fa-960.jpg 960w, assets/img/optimized/be4da56254e796fa-1600.jpg 1600w, assets/img/optimized/be4da56254e796fa-1920.jpg 1920w"
+      },
+      "fallback": "assets/img/optimized/be4da56254e796fa-960.jpg",
+      "width": 1920,
+      "height": 2880
+    },
+    "Креативные съёмки/mikhail-seleznev-bMp.jpg": {
+      "sizes": "(max-width: 860px) 92vw, (max-width: 1280px) 46vw, 33vw",
+      "avif": {
+        "srcset": "assets/img/optimized/1e36840622d4bc13-480.avif 480w, assets/img/optimized/1e36840622d4bc13-960.avif 960w, assets/img/optimized/1e36840622d4bc13-1600.avif 1600w, assets/img/optimized/1e36840622d4bc13-1920.avif 1920w"
+      },
+      "webp": {
+        "srcset": "assets/img/optimized/1e36840622d4bc13-480.webp 480w, assets/img/optimized/1e36840622d4bc13-960.webp 960w, assets/img/optimized/1e36840622d4bc13-1600.webp 1600w, assets/img/optimized/1e36840622d4bc13-1920.webp 1920w"
+      },
+      "jpg": {
+        "srcset": "assets/img/optimized/1e36840622d4bc13-480.jpg 480w, assets/img/optimized/1e36840622d4bc13-960.jpg 960w, assets/img/optimized/1e36840622d4bc13-1600.jpg 1600w, assets/img/optimized/1e36840622d4bc13-1920.jpg 1920w"
+      },
+      "fallback": "assets/img/optimized/1e36840622d4bc13-960.jpg",
+      "width": 1920,
+      "height": 2880
+    },
+    "Креативные съёмки/mikhail-seleznev-oAf.jpg": {
+      "sizes": "(max-width: 860px) 92vw, (max-width: 1280px) 46vw, 33vw",
+      "avif": {
+        "srcset": "assets/img/optimized/c6651dcd78683d34-480.avif 480w, assets/img/optimized/c6651dcd78683d34-960.avif 960w, assets/img/optimized/c6651dcd78683d34-1600.avif 1600w, assets/img/optimized/c6651dcd78683d34-1920.avif 1920w"
+      },
+      "webp": {
+        "srcset": "assets/img/optimized/c6651dcd78683d34-480.webp 480w, assets/img/optimized/c6651dcd78683d34-960.webp 960w, assets/img/optimized/c6651dcd78683d34-1600.webp 1600w, assets/img/optimized/c6651dcd78683d34-1920.webp 1920w"
+      },
+      "jpg": {
+        "srcset": "assets/img/optimized/c6651dcd78683d34-480.jpg 480w, assets/img/optimized/c6651dcd78683d34-960.jpg 960w, assets/img/optimized/c6651dcd78683d34-1600.jpg 1600w, assets/img/optimized/c6651dcd78683d34-1920.jpg 1920w"
+      },
+      "fallback": "assets/img/optimized/c6651dcd78683d34-960.jpg",
+      "width": 1920,
+      "height": 2559
+    },
+    "Портреты/IMG_1687.jpg": {
+      "sizes": "(max-width: 860px) 92vw, (max-width: 1280px) 46vw, 33vw",
+      "avif": {
+        "srcset": "assets/img/optimized/95f138dec8c92990-480.avif 480w, assets/img/optimized/95f138dec8c92990-960.avif 960w, assets/img/optimized/95f138dec8c92990-1600.avif 1600w, assets/img/optimized/95f138dec8c92990-1920.avif 1920w"
+      },
+      "webp": {
+        "srcset": "assets/img/optimized/95f138dec8c92990-480.webp 480w, assets/img/optimized/95f138dec8c92990-960.webp 960w, assets/img/optimized/95f138dec8c92990-1600.webp 1600w, assets/img/optimized/95f138dec8c92990-1920.webp 1920w"
+      },
+      "jpg": {
+        "srcset": "assets/img/optimized/95f138dec8c92990-480.jpg 480w, assets/img/optimized/95f138dec8c92990-960.jpg 960w, assets/img/optimized/95f138dec8c92990-1600.jpg 1600w, assets/img/optimized/95f138dec8c92990-1920.jpg 1920w"
+      },
+      "fallback": "assets/img/optimized/95f138dec8c92990-960.jpg",
+      "width": 1920,
+      "height": 2880
+    },
+    "Портреты/IMG_6854.jpg": {
+      "sizes": "(max-width: 860px) 92vw, (max-width: 1280px) 46vw, 33vw",
+      "avif": {
+        "srcset": "assets/img/optimized/94c24ca9cd1bb96b-480.avif 480w, assets/img/optimized/94c24ca9cd1bb96b-960.avif 960w, assets/img/optimized/94c24ca9cd1bb96b-1600.avif 1600w, assets/img/optimized/94c24ca9cd1bb96b-1920.avif 1920w"
+      },
+      "webp": {
+        "srcset": "assets/img/optimized/94c24ca9cd1bb96b-480.webp 480w, assets/img/optimized/94c24ca9cd1bb96b-960.webp 960w, assets/img/optimized/94c24ca9cd1bb96b-1600.webp 1600w, assets/img/optimized/94c24ca9cd1bb96b-1920.webp 1920w"
+      },
+      "jpg": {
+        "srcset": "assets/img/optimized/94c24ca9cd1bb96b-480.jpg 480w, assets/img/optimized/94c24ca9cd1bb96b-960.jpg 960w, assets/img/optimized/94c24ca9cd1bb96b-1600.jpg 1600w, assets/img/optimized/94c24ca9cd1bb96b-1920.jpg 1920w"
+      },
+      "fallback": "assets/img/optimized/94c24ca9cd1bb96b-960.jpg",
+      "width": 1920,
+      "height": 2880
+    },
+    "Портреты/_MG_2381.jpg": {
+      "sizes": "(max-width: 860px) 92vw, (max-width: 1280px) 46vw, 33vw",
+      "avif": {
+        "srcset": "assets/img/optimized/c2a4f81d4e230996-480.avif 480w, assets/img/optimized/c2a4f81d4e230996-960.avif 960w, assets/img/optimized/c2a4f81d4e230996-1600.avif 1600w, assets/img/optimized/c2a4f81d4e230996-1920.avif 1920w"
+      },
+      "webp": {
+        "srcset": "assets/img/optimized/c2a4f81d4e230996-480.webp 480w, assets/img/optimized/c2a4f81d4e230996-960.webp 960w, assets/img/optimized/c2a4f81d4e230996-1600.webp 1600w, assets/img/optimized/c2a4f81d4e230996-1920.webp 1920w"
+      },
+      "jpg": {
+        "srcset": "assets/img/optimized/c2a4f81d4e230996-480.jpg 480w, assets/img/optimized/c2a4f81d4e230996-960.jpg 960w, assets/img/optimized/c2a4f81d4e230996-1600.jpg 1600w, assets/img/optimized/c2a4f81d4e230996-1920.jpg 1920w"
+      },
+      "fallback": "assets/img/optimized/c2a4f81d4e230996-960.jpg",
+      "width": 1920,
+      "height": 2880
+    },
+    "Портреты/mikhail-seleznev-3VO.jpg": {
+      "sizes": "(max-width: 860px) 92vw, (max-width: 1280px) 46vw, 33vw",
+      "avif": {
+        "srcset": "assets/img/optimized/9442d91f02f88296-480.avif 480w, assets/img/optimized/9442d91f02f88296-960.avif 960w, assets/img/optimized/9442d91f02f88296-1600.avif 1600w, assets/img/optimized/9442d91f02f88296-1680.avif 1680w"
+      },
+      "webp": {
+        "srcset": "assets/img/optimized/9442d91f02f88296-480.webp 480w, assets/img/optimized/9442d91f02f88296-960.webp 960w, assets/img/optimized/9442d91f02f88296-1600.webp 1600w, assets/img/optimized/9442d91f02f88296-1680.webp 1680w"
+      },
+      "jpg": {
+        "srcset": "assets/img/optimized/9442d91f02f88296-480.jpg 480w, assets/img/optimized/9442d91f02f88296-960.jpg 960w, assets/img/optimized/9442d91f02f88296-1600.jpg 1600w, assets/img/optimized/9442d91f02f88296-1680.jpg 1680w"
+      },
+      "fallback": "assets/img/optimized/9442d91f02f88296-960.jpg",
+      "width": 1680,
+      "height": 2520
+    },
+    "Природа/IMG_0747.jpg": {
+      "sizes": "(max-width: 860px) 92vw, (max-width: 1280px) 46vw, 33vw",
+      "avif": {
+        "srcset": "assets/img/optimized/ee3cfa77bad95357-480.avif 480w, assets/img/optimized/ee3cfa77bad95357-960.avif 960w, assets/img/optimized/ee3cfa77bad95357-1600.avif 1600w, assets/img/optimized/ee3cfa77bad95357-1920.avif 1920w"
+      },
+      "webp": {
+        "srcset": "assets/img/optimized/ee3cfa77bad95357-480.webp 480w, assets/img/optimized/ee3cfa77bad95357-960.webp 960w, assets/img/optimized/ee3cfa77bad95357-1600.webp 1600w, assets/img/optimized/ee3cfa77bad95357-1920.webp 1920w"
+      },
+      "jpg": {
+        "srcset": "assets/img/optimized/ee3cfa77bad95357-480.jpg 480w, assets/img/optimized/ee3cfa77bad95357-960.jpg 960w, assets/img/optimized/ee3cfa77bad95357-1600.jpg 1600w, assets/img/optimized/ee3cfa77bad95357-1920.jpg 1920w"
+      },
+      "fallback": "assets/img/optimized/ee3cfa77bad95357-960.jpg",
+      "width": 1920,
+      "height": 2109
+    },
+    "Природа/IMG_0756_3.jpg": {
+      "sizes": "(max-width: 860px) 92vw, (max-width: 1280px) 46vw, 33vw",
+      "avif": {
+        "srcset": "assets/img/optimized/00676b70dab2f85b-480.avif 480w, assets/img/optimized/00676b70dab2f85b-960.avif 960w, assets/img/optimized/00676b70dab2f85b-1600.avif 1600w, assets/img/optimized/00676b70dab2f85b-1920.avif 1920w"
+      },
+      "webp": {
+        "srcset": "assets/img/optimized/00676b70dab2f85b-480.webp 480w, assets/img/optimized/00676b70dab2f85b-960.webp 960w, assets/img/optimized/00676b70dab2f85b-1600.webp 1600w, assets/img/optimized/00676b70dab2f85b-1920.webp 1920w"
+      },
+      "jpg": {
+        "srcset": "assets/img/optimized/00676b70dab2f85b-480.jpg 480w, assets/img/optimized/00676b70dab2f85b-960.jpg 960w, assets/img/optimized/00676b70dab2f85b-1600.jpg 1600w, assets/img/optimized/00676b70dab2f85b-1920.jpg 1920w"
+      },
+      "fallback": "assets/img/optimized/00676b70dab2f85b-960.jpg",
+      "width": 1920,
+      "height": 2560
+    },
+    "Природа/_MG_6396.jpg": {
+      "sizes": "(max-width: 860px) 92vw, (max-width: 1280px) 46vw, 33vw",
+      "avif": {
+        "srcset": "assets/img/optimized/4acb5b3a4c9a19a3-480.avif 480w, assets/img/optimized/4acb5b3a4c9a19a3-960.avif 960w, assets/img/optimized/4acb5b3a4c9a19a3-1600.avif 1600w, assets/img/optimized/4acb5b3a4c9a19a3-1920.avif 1920w"
+      },
+      "webp": {
+        "srcset": "assets/img/optimized/4acb5b3a4c9a19a3-480.webp 480w, assets/img/optimized/4acb5b3a4c9a19a3-960.webp 960w, assets/img/optimized/4acb5b3a4c9a19a3-1600.webp 1600w, assets/img/optimized/4acb5b3a4c9a19a3-1920.webp 1920w"
+      },
+      "jpg": {
+        "srcset": "assets/img/optimized/4acb5b3a4c9a19a3-480.jpg 480w, assets/img/optimized/4acb5b3a4c9a19a3-960.jpg 960w, assets/img/optimized/4acb5b3a4c9a19a3-1600.jpg 1600w, assets/img/optimized/4acb5b3a4c9a19a3-1920.jpg 1920w"
+      },
+      "fallback": "assets/img/optimized/4acb5b3a4c9a19a3-960.jpg",
+      "width": 1920,
+      "height": 2880
+    },
+    "Природа/_MG_7103.jpg": {
+      "sizes": "(max-width: 860px) 92vw, (max-width: 1280px) 46vw, 33vw",
+      "avif": {
+        "srcset": "assets/img/optimized/57e38c5c9a3a79ac-480.avif 480w, assets/img/optimized/57e38c5c9a3a79ac-960.avif 960w, assets/img/optimized/57e38c5c9a3a79ac-1600.avif 1600w, assets/img/optimized/57e38c5c9a3a79ac-1920.avif 1920w"
+      },
+      "webp": {
+        "srcset": "assets/img/optimized/57e38c5c9a3a79ac-480.webp 480w, assets/img/optimized/57e38c5c9a3a79ac-960.webp 960w, assets/img/optimized/57e38c5c9a3a79ac-1600.webp 1600w, assets/img/optimized/57e38c5c9a3a79ac-1920.webp 1920w"
+      },
+      "jpg": {
+        "srcset": "assets/img/optimized/57e38c5c9a3a79ac-480.jpg 480w, assets/img/optimized/57e38c5c9a3a79ac-960.jpg 960w, assets/img/optimized/57e38c5c9a3a79ac-1600.jpg 1600w, assets/img/optimized/57e38c5c9a3a79ac-1920.jpg 1920w"
+      },
+      "fallback": "assets/img/optimized/57e38c5c9a3a79ac-960.jpg",
+      "width": 1920,
+      "height": 2880
+    },
+    "Стоковые фотографии/075D56A0-FCE1-4EE3-8.jpeg": {
+      "sizes": "(max-width: 860px) 92vw, (max-width: 1280px) 46vw, 33vw",
+      "avif": {
+        "srcset": "assets/img/optimized/be9458165008fcb4-480.avif 480w, assets/img/optimized/be9458165008fcb4-960.avif 960w, assets/img/optimized/be9458165008fcb4-1600.avif 1600w, assets/img/optimized/be9458165008fcb4-1680.avif 1680w"
+      },
+      "webp": {
+        "srcset": "assets/img/optimized/be9458165008fcb4-480.webp 480w, assets/img/optimized/be9458165008fcb4-960.webp 960w, assets/img/optimized/be9458165008fcb4-1600.webp 1600w, assets/img/optimized/be9458165008fcb4-1680.webp 1680w"
+      },
+      "jpg": {
+        "srcset": "assets/img/optimized/be9458165008fcb4-480.jpg 480w, assets/img/optimized/be9458165008fcb4-960.jpg 960w, assets/img/optimized/be9458165008fcb4-1600.jpg 1600w, assets/img/optimized/be9458165008fcb4-1680.jpg 1680w"
+      },
+      "fallback": "assets/img/optimized/be9458165008fcb4-960.jpg",
+      "width": 1680,
+      "height": 2520
+    },
+    "Стоковые фотографии/C6A656AE-E6AE-4411-9.jpg": {
+      "sizes": "(max-width: 860px) 92vw, (max-width: 1280px) 46vw, 33vw",
+      "avif": {
+        "srcset": "assets/img/optimized/24d022d874353803-480.avif 480w, assets/img/optimized/24d022d874353803-960.avif 960w, assets/img/optimized/24d022d874353803-1600.avif 1600w, assets/img/optimized/24d022d874353803-1620.avif 1620w"
+      },
+      "webp": {
+        "srcset": "assets/img/optimized/24d022d874353803-480.webp 480w, assets/img/optimized/24d022d874353803-960.webp 960w, assets/img/optimized/24d022d874353803-1600.webp 1600w, assets/img/optimized/24d022d874353803-1620.webp 1620w"
+      },
+      "jpg": {
+        "srcset": "assets/img/optimized/24d022d874353803-480.jpg 480w, assets/img/optimized/24d022d874353803-960.jpg 960w, assets/img/optimized/24d022d874353803-1600.jpg 1600w, assets/img/optimized/24d022d874353803-1620.jpg 1620w"
+      },
+      "fallback": "assets/img/optimized/24d022d874353803-960.jpg",
+      "width": 1620,
+      "height": 2160
+    },
+    "Стоковые фотографии/mikhail-seleznev-9hm.jpg": {
+      "sizes": "(max-width: 860px) 92vw, (max-width: 1280px) 46vw, 33vw",
+      "avif": {
+        "srcset": "assets/img/optimized/185cd7f6eecc95c0-480.avif 480w, assets/img/optimized/185cd7f6eecc95c0-960.avif 960w, assets/img/optimized/185cd7f6eecc95c0-1600.avif 1600w, assets/img/optimized/185cd7f6eecc95c0-1920.avif 1920w"
+      },
+      "webp": {
+        "srcset": "assets/img/optimized/185cd7f6eecc95c0-480.webp 480w, assets/img/optimized/185cd7f6eecc95c0-960.webp 960w, assets/img/optimized/185cd7f6eecc95c0-1600.webp 1600w, assets/img/optimized/185cd7f6eecc95c0-1920.webp 1920w"
+      },
+      "jpg": {
+        "srcset": "assets/img/optimized/185cd7f6eecc95c0-480.jpg 480w, assets/img/optimized/185cd7f6eecc95c0-960.jpg 960w, assets/img/optimized/185cd7f6eecc95c0-1600.jpg 1600w, assets/img/optimized/185cd7f6eecc95c0-1920.jpg 1920w"
+      },
+      "fallback": "assets/img/optimized/185cd7f6eecc95c0-960.jpg",
+      "width": 1920,
+      "height": 2587
+    },
+    "Стоковые фотографии/mikhail-seleznev-jCb.jpg": {
+      "sizes": "(max-width: 860px) 92vw, (max-width: 1280px) 46vw, 33vw",
+      "avif": {
+        "srcset": "assets/img/optimized/6cd7ea1bff57de7c-480.avif 480w, assets/img/optimized/6cd7ea1bff57de7c-960.avif 960w, assets/img/optimized/6cd7ea1bff57de7c-1600.avif 1600w, assets/img/optimized/6cd7ea1bff57de7c-1920.avif 1920w"
+      },
+      "webp": {
+        "srcset": "assets/img/optimized/6cd7ea1bff57de7c-480.webp 480w, assets/img/optimized/6cd7ea1bff57de7c-960.webp 960w, assets/img/optimized/6cd7ea1bff57de7c-1600.webp 1600w, assets/img/optimized/6cd7ea1bff57de7c-1920.webp 1920w"
+      },
+      "jpg": {
+        "srcset": "assets/img/optimized/6cd7ea1bff57de7c-480.jpg 480w, assets/img/optimized/6cd7ea1bff57de7c-960.jpg 960w, assets/img/optimized/6cd7ea1bff57de7c-1600.jpg 1600w, assets/img/optimized/6cd7ea1bff57de7c-1920.jpg 1920w"
+      },
+      "fallback": "assets/img/optimized/6cd7ea1bff57de7c-960.jpg",
+      "width": 1920,
+      "height": 2880
+    },
+    "Студийные съёмки/mikhail-seleznev-DKq.jpg": {
+      "sizes": "(max-width: 860px) 92vw, (max-width: 1280px) 46vw, 33vw",
+      "avif": {
+        "srcset": "assets/img/optimized/ca3e399a901c58f7-480.avif 480w, assets/img/optimized/ca3e399a901c58f7-960.avif 960w, assets/img/optimized/ca3e399a901c58f7-1600.avif 1600w, assets/img/optimized/ca3e399a901c58f7-1920.avif 1920w"
+      },
+      "webp": {
+        "srcset": "assets/img/optimized/ca3e399a901c58f7-480.webp 480w, assets/img/optimized/ca3e399a901c58f7-960.webp 960w, assets/img/optimized/ca3e399a901c58f7-1600.webp 1600w, assets/img/optimized/ca3e399a901c58f7-1920.webp 1920w"
+      },
+      "jpg": {
+        "srcset": "assets/img/optimized/ca3e399a901c58f7-480.jpg 480w, assets/img/optimized/ca3e399a901c58f7-960.jpg 960w, assets/img/optimized/ca3e399a901c58f7-1600.jpg 1600w, assets/img/optimized/ca3e399a901c58f7-1920.jpg 1920w"
+      },
+      "fallback": "assets/img/optimized/ca3e399a901c58f7-960.jpg",
+      "width": 1920,
+      "height": 2886
+    },
+    "Студийные съёмки/mikhail-seleznev-E4d.jpg": {
+      "sizes": "(max-width: 860px) 92vw, (max-width: 1280px) 46vw, 33vw",
+      "avif": {
+        "srcset": "assets/img/optimized/ec32637e5021b151-480.avif 480w, assets/img/optimized/ec32637e5021b151-960.avif 960w, assets/img/optimized/ec32637e5021b151-1600.avif 1600w, assets/img/optimized/ec32637e5021b151-1920.avif 1920w"
+      },
+      "webp": {
+        "srcset": "assets/img/optimized/ec32637e5021b151-480.webp 480w, assets/img/optimized/ec32637e5021b151-960.webp 960w, assets/img/optimized/ec32637e5021b151-1600.webp 1600w, assets/img/optimized/ec32637e5021b151-1920.webp 1920w"
+      },
+      "jpg": {
+        "srcset": "assets/img/optimized/ec32637e5021b151-480.jpg 480w, assets/img/optimized/ec32637e5021b151-960.jpg 960w, assets/img/optimized/ec32637e5021b151-1600.jpg 1600w, assets/img/optimized/ec32637e5021b151-1920.jpg 1920w"
+      },
+      "fallback": "assets/img/optimized/ec32637e5021b151-960.jpg",
+      "width": 1920,
+      "height": 2734
+    },
+    "Студийные съёмки/mikhail-seleznev-R7c.jpg": {
+      "sizes": "(max-width: 860px) 92vw, (max-width: 1280px) 46vw, 33vw",
+      "avif": {
+        "srcset": "assets/img/optimized/174c69475b487b34-480.avif 480w, assets/img/optimized/174c69475b487b34-960.avif 960w, assets/img/optimized/174c69475b487b34-1600.avif 1600w, assets/img/optimized/174c69475b487b34-1920.avif 1920w"
+      },
+      "webp": {
+        "srcset": "assets/img/optimized/174c69475b487b34-480.webp 480w, assets/img/optimized/174c69475b487b34-960.webp 960w, assets/img/optimized/174c69475b487b34-1600.webp 1600w, assets/img/optimized/174c69475b487b34-1920.webp 1920w"
+      },
+      "jpg": {
+        "srcset": "assets/img/optimized/174c69475b487b34-480.jpg 480w, assets/img/optimized/174c69475b487b34-960.jpg 960w, assets/img/optimized/174c69475b487b34-1600.jpg 1600w, assets/img/optimized/174c69475b487b34-1920.jpg 1920w"
+      },
+      "fallback": "assets/img/optimized/174c69475b487b34-960.jpg",
+      "width": 1920,
+      "height": 2880
+    },
+    "Студийные съёмки/mikhail-seleznev-unH.jpg": {
+      "sizes": "(max-width: 860px) 92vw, (max-width: 1280px) 46vw, 33vw",
+      "avif": {
+        "srcset": "assets/img/optimized/65f960280f3154e7-480.avif 480w, assets/img/optimized/65f960280f3154e7-960.avif 960w, assets/img/optimized/65f960280f3154e7-1600.avif 1600w, assets/img/optimized/65f960280f3154e7-1920.avif 1920w"
+      },
+      "webp": {
+        "srcset": "assets/img/optimized/65f960280f3154e7-480.webp 480w, assets/img/optimized/65f960280f3154e7-960.webp 960w, assets/img/optimized/65f960280f3154e7-1600.webp 1600w, assets/img/optimized/65f960280f3154e7-1920.webp 1920w"
+      },
+      "jpg": {
+        "srcset": "assets/img/optimized/65f960280f3154e7-480.jpg 480w, assets/img/optimized/65f960280f3154e7-960.jpg 960w, assets/img/optimized/65f960280f3154e7-1600.jpg 1600w, assets/img/optimized/65f960280f3154e7-1920.jpg 1920w"
+      },
+      "fallback": "assets/img/optimized/65f960280f3154e7-960.jpg",
+      "width": 1920,
+      "height": 2880
+    }
+  }
+}

@@ -175,13 +175,16 @@
     return loadResponsiveManifest()
       .then(function(manifest){
         var files = manifest && manifest.files ? manifest.files : {};
-        var imgs = document.querySelectorAll('img:not([data-optimized-image="1"])');
+        var imgs = document.querySelectorAll("img:not([data-optimized-image])");
         if (!imgs.length) return;
 
         imgs.forEach(function(img){
           var key = normalizeSrcKey(img.getAttribute("src") || "");
           var entry = files[key];
-          if (!entry) return;
+          if (!entry) {
+            img.dataset.optimizedImage = "skip";
+            return;
+          }
 
           img.dataset.optimizedImage = "1";
           if (entry.sizes) img.setAttribute("sizes", entry.sizes);
@@ -223,15 +226,35 @@
 
   function watchForImageMutations(){
     if (!(window.MutationObserver && document.body)) return;
+    var root = document.getElementById("grid") || document.body;
     var timer = null;
-    var observer = new MutationObserver(function(){
+    var observer = new MutationObserver(function(mutations){
+      var hasImages = false;
+      for (var i = 0; i < mutations.length; i++){
+        var added = mutations[i].addedNodes;
+        for (var j = 0; j < added.length; j++){
+          var node = added[j];
+          if (!node || node.nodeType !== 1) continue;
+          if (node.tagName === "IMG") {
+            hasImages = true;
+            break;
+          }
+          if (node.querySelector && node.querySelector("img")) {
+            hasImages = true;
+            break;
+          }
+        }
+        if (hasImages) break;
+      }
+      if (!hasImages) return;
+
       if (timer) clearTimeout(timer);
       timer = setTimeout(function(){
         timer = null;
         applyResponsiveManifest();
-      }, 120);
+      }, 160);
     });
-    observer.observe(document.body, { childList: true, subtree: true });
+    observer.observe(root, { childList: true, subtree: true });
   }
 
   // =============================

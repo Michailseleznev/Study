@@ -69,7 +69,14 @@
         var img = this.querySelector("img");
         var titleEl = this.querySelector(".title");
         var storyEl = this.querySelector(".story");
-        var src = img ? (img.getAttribute("data-lb-src") || img.getAttribute("src") || "") : "";
+        var src = "";
+        if (img) {
+          src = img.getAttribute("data-lb-src") || "";
+          if (!src) {
+            src = img.currentSrc || img.getAttribute("src") || "";
+            src = src.replace(/-(480|960)\.(avif|webp|jpe?g)$/i, "-1600.$2");
+          }
+        }
         var title = titleEl ? titleEl.textContent : "";
         var story = storyEl ? storyEl.textContent : "";
         var category = getCardCategory(this);
@@ -85,6 +92,7 @@
     if (!grid) return;
     grid.innerHTML = "";
     grid.appendChild(buildCreditEl());
+    var fragment = document.createDocumentFragment();
 
     for (var i = 0; i < list.length; i++){
       var p = list[i] || {};
@@ -122,8 +130,9 @@
       info.appendChild(title);
       label.appendChild(info);
       card.appendChild(label);
-      grid.appendChild(card);
+      fragment.appendChild(card);
     }
+    grid.appendChild(fragment);
 
     animateUnsplashCards(grid);
     kickUnsplashGlow();
@@ -137,9 +146,15 @@
 
     var cards = grid.querySelectorAll(".work");
     if (!cards.length) return;
+    var maxAnimated = (navigator.hardwareConcurrency && navigator.hardwareConcurrency <= 4) ? 6 : 12;
 
     for (var i = 0; i < cards.length; i++){
       var card = cards[i];
+      if (i >= maxAnimated) {
+        card.classList.remove("work-enter", "work-enter-active");
+        card.style.removeProperty("--work-enter-delay");
+        continue;
+      }
       var delay = Math.min(i, 10) * 70;
       card.classList.remove("work-enter", "work-enter-active");
       card.style.removeProperty("--work-enter-delay");

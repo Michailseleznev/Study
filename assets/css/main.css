@@ -823,6 +823,8 @@
       break-inside: avoid;
       -webkit-column-break-inside: avoid;
       page-break-inside: avoid;
+      content-visibility: auto;
+      contain-intrinsic-size: 420px 680px;
     }
     #tab-unsplash:checked ~ #grid .grid-panel--unsplash .work img{
       width: 100%;

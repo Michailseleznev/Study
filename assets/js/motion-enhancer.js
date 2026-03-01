@@ -5,6 +5,12 @@
     var prefersReduced = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     var supportsIO = "IntersectionObserver" in window;
     var hasGsapReveal = !!(window.gsap && window.ScrollTrigger);
+    var isLowPerfDevice = (
+      (navigator.hardwareConcurrency && navigator.hardwareConcurrency <= 4) ||
+      (navigator.deviceMemory && navigator.deviceMemory <= 4)
+    );
+    var maxAnimatedCards = isLowPerfDevice ? 5 : 10;
+    var maxAnimatedUnsplashCards = isLowPerfDevice ? 0 : 8;
 
     var sectionSelectors = [".hero", "#portfolio", "#services", "#reviews", "#pricing", "#contact"];
     var sections = sectionSelectors
@@ -228,25 +234,54 @@
         var cards = panel.querySelectorAll(".work");
         if (!cards.length) continue;
 
+        var panelLimit = panel.classList.contains("grid-panel--unsplash")
+          ? maxAnimatedUnsplashCards
+          : maxAnimatedCards;
+        var activateList = [];
+
         for (var i = 0; i < cards.length; i++){
           var card = cards[i];
-          var delay = Math.min(i, 10) * 70;
-          card.classList.remove("work-enter", "work-enter-active");
-          card.style.removeProperty("--work-enter-delay");
+          if (card.__workEnterTimer) clearTimeout(card.__workEnterTimer);
+
+          if (i >= panelLimit) {
+            card.classList.remove("work-enter", "work-enter-active");
+            card.style.removeProperty("--work-enter-delay");
+            continue;
+          }
+
+          var delay = Math.min(i, 8) * 60;
+          card.classList.remove("work-enter-active");
           card.style.setProperty("--work-enter-delay", delay + "ms");
           card.classList.add("work-enter");
-          void card.offsetWidth;
-          card.classList.add("work-enter-active");
+          activateList.push(card);
 
-          if (card.__workEnterTimer) clearTimeout(card.__workEnterTimer);
           card.__workEnterTimer = setTimeout(function(el){
             return function(){
               el.classList.remove("work-enter", "work-enter-active");
               el.style.removeProperty("--work-enter-delay");
             };
-          }(card), 900 + delay);
+          }(card), 760 + delay);
         }
+
+        if (!activateList.length) continue;
+        (function(cardsToActivate){
+          requestAnimationFrame(function(){
+            requestAnimationFrame(function(){
+              for (var c = 0; c < cardsToActivate.length; c++){
+                if (!cardsToActivate[c].isConnected) continue;
+                cardsToActivate[c].classList.add("work-enter-active");
+              }
+            });
+          });
+        })(activateList);
       }
+    }
+
+    function scheduleTabAnimations(){
+      requestAnimationFrame(function(){
+        animateVisibleWorkCards();
+        initWorkImageFade(document);
+      });
     }
 
     function bindPortfolioEntrance(){
@@ -285,26 +320,32 @@
         if (radio.__workAnimBound) continue;
         radio.__workAnimBound = true;
         radio.addEventListener("change", function(){
-          setTimeout(function(){
-            animateVisibleWorkCards();
-            initWorkImageFade(document);
-          }, 24);
+          scheduleTabAnimations();
         });
       }
     }
 
     function watchDynamicContent(){
-      var roots = [document.getElementById("grid"), document.getElementById("unsplashGrid")].filter(Boolean);
+      var roots = [document.getElementById("grid")].filter(Boolean);
       for (var i = 0; i < roots.length; i++){
         (function(root){
           var motionTick = null;
-          var mo = new MutationObserver(function(){
+          var mo = new MutationObserver(function(mutations){
+            var hasNodes = false;
+            for (var m = 0; m < mutations.length; m++){
+              if (mutations[m].addedNodes.length || mutations[m].removedNodes.length) {
+                hasNodes = true;
+                break;
+              }
+            }
+            if (!hasNodes) return;
+
             if (motionTick) clearTimeout(motionTick);
             motionTick = setTimeout(function(){
               applyReveal(root);
               initWorkImageFade(root);
               animateVisibleWorkCards();
-            }, 28);
+            }, 120);
           });
           mo.observe(root, { childList: true, subtree: true });
         })(roots[i]);

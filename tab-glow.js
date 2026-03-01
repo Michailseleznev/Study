@@ -192,52 +192,10 @@ if (typeof document !== "undefined") {
     function calcPanelHeight(panel, isMobile){
       var rect = panel.getBoundingClientRect();
       var measured = Math.max(panel.scrollHeight || 0, panel.offsetHeight || 0, rect.height || 0);
-      var cards = panel.querySelectorAll(".work");
-      if (!cards.length) return measured;
-
-      var styles = window.getComputedStyle(panel);
-      var colCount = readPositiveInt(styles.columnCount);
-      if (!colCount){
-        if (isMobile) {
-          colCount = 1;
-        } else {
-          colCount = 4;
-        }
-      }
-
-      var panelWidth = Math.max(panel.clientWidth || 0, rect.width || 0, 320);
-      var gap = readPositiveFloat(styles.columnGap || styles.rowGap || "14");
-      var cardWidth = panelWidth / Math.max(1, colCount);
-
-      var ratioSum = 0;
-      var ratioCount = 0;
-      for (var i = 0; i < cards.length; i++){
-        var img = cards[i].querySelector("img");
-        if (!img) continue;
-        var w = readPositiveFloat(img.getAttribute("width")) || readPositiveFloat(img.naturalWidth);
-        var h = readPositiveFloat(img.getAttribute("height")) || readPositiveFloat(img.naturalHeight);
-        if (!w || !h) continue;
-        var ratio = h / w;
-        if (ratio < 0.6 || ratio > 2.4) continue;
-        ratioSum += ratio;
-        ratioCount += 1;
-      }
-
-      var avgRatio = ratioCount ? (ratioSum / ratioCount) : 1.45;
       if (panel.classList.contains("grid-panel--unsplash")) {
-        avgRatio = Math.max(1.1, avgRatio);
+        return Math.max(measured, isMobile ? 560 : 520);
       }
-      if (isMobile && colCount === 1) {
-        avgRatio = Math.max(1.35, avgRatio);
-      }
-
-      var rows = Math.ceil(cards.length / Math.max(1, colCount));
-      var estimated = rows * (cardWidth * avgRatio) + Math.max(0, rows - 1) * gap;
-      if (panel.classList.contains("grid-panel--unsplash") || panel.querySelector(".unsplash-credit")) {
-        estimated += 64;
-      }
-
-      return Math.max(measured, estimated);
+      return Math.max(measured, isMobile ? 420 : 340);
     }
 
     function applyGlowLayout(id){
@@ -346,16 +304,27 @@ if (typeof document !== "undefined") {
       }
 
       if (window.MutationObserver){
-        mutationObserver = new MutationObserver(function(){
-          scheduleGlowLayout();
-          setTimeout(function(){ scheduleGlowLayout(); }, 100);
+        var mutationTimer = null;
+        mutationObserver = new MutationObserver(function(mutations){
+          var hasRelevantNodes = false;
+          for (var m = 0; m < mutations.length; m++){
+            if (mutations[m].addedNodes.length || mutations[m].removedNodes.length) {
+              hasRelevantNodes = true;
+              break;
+            }
+          }
+          if (!hasRelevantNodes) return;
+          if (mutationTimer) clearTimeout(mutationTimer);
+          mutationTimer = setTimeout(function(){
+            mutationTimer = null;
+            scheduleGlowLayout();
+          }, 120);
         });
         mutationObserver.observe(grid, { childList: true, subtree: true });
       }
 
       scheduleGlowLayout();
       setTimeout(function(){ scheduleGlowLayout(); }, 120);
-      setTimeout(function(){ scheduleGlowLayout(); }, 420);
     }
 
     function initGlowPaths(){

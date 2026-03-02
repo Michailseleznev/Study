@@ -1,6 +1,6 @@
 # Site Setup
 
-## 1) Start Unsplash local proxy (optional but recommended)
+## 1) Start Unsplash local proxy (optional, only if you need external egress proxy)
 
 ```bash
 python3 scripts/unsplash_local_proxy.py \
@@ -38,12 +38,18 @@ export TELEGRAM_CHAT_ID="..."
 # export TELEGRAM_INSECURE="1"
 # optional proxy for Telegram API
 # export TELEGRAM_HTTP_PROXY="http://user:pass@host:port"
+# optional proxy for built-in Unsplash proxy
+# export UNSPLASH_UPSTREAM_PROXY="http://user:pass@host:port"
+# optional Unsplash API key for /proxy/unsplash/api/*
+# export UNSPLASH_ACCESS_KEY="..."
 python3 server.py --host 127.0.0.1 --port 4173
 ```
 
 API endpoints:
 - `POST /api/leads` — website lead form
 - `POST /api/analytics` — event tracking
+- `GET /proxy/unsplash/public/users/:username/photos` — built-in Unsplash public proxy
+- `GET /proxy/unsplash/api/users/:username/photos` — built-in Unsplash API proxy
 
 Data files:
 - `data/leads.ndjson`

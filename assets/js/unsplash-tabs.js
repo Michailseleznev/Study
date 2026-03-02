@@ -5,7 +5,7 @@
   var UNSPLASH_CATEGORY = "Недавние фотографии";
   var UNSPLASH_COUNT = 32;
   var UNSPLASH_LOCAL_MANIFEST = "/unsplash-local/manifest.json";
-  var UNSPLASH_PROXY_BASE = "http://127.0.0.1:8787";
+  var UNSPLASH_PROXY_BASE = "";
   var UNSPLASH_PROFILE_FALLBACK = "https://unsplash.com/@mihmihfoto";
   var UNSPLASH_MEMORY_TTL_MS = 5 * 60 * 1000;
   var unsplashMemoryList = [];
@@ -280,8 +280,9 @@
   }
 
   function buildProxyUrl(path){
-    var base = String(UNSPLASH_PROXY_BASE || "").replace(/\/+$/, "");
-    return base ? (base + path) : "";
+    var base = String(UNSPLASH_PROXY_BASE || "").trim().replace(/\/+$/, "");
+    if (base) return base + path;
+    return "/proxy/unsplash" + path;
   }
 
   function fetchViaProxy(username, done){

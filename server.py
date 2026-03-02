@@ -8,16 +8,21 @@ import os
 import re
 import ssl
 import threading
+import time
 from datetime import datetime, timezone
 from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
-from urllib import parse, request
+from urllib import error, parse, request
 
 
 DATA_DIR = Path("data")
 LEADS_PATH = DATA_DIR / "leads.ndjson"
 ANALYTICS_PATH = DATA_DIR / "analytics.ndjson"
 NDJSON_WRITE_LOCK = threading.Lock()
+
+UNSPLASH_PROXY_USER_AGENT = "MellowServerUnsplashProxy/1.0"
+UNSPLASH_PROXY_DEFAULT_TIMEOUT = 14.0
+UNSPLASH_PROXY_DEFAULT_CACHE_TTL = 120
 
 
 def utc_now_iso() -> str:
@@ -70,6 +75,26 @@ def env_flag(name: str, default: bool = False) -> bool:
     if not raw:
         return default
     return raw in {"1", "true", "yes", "on"}
+
+
+def env_float(name: str, default: float) -> float:
+    raw = str(os.environ.get(name, "")).strip()
+    if not raw:
+        return default
+    try:
+        return float(raw)
+    except ValueError:
+        return default
+
+
+def env_int(name: str, default: int) -> int:
+    raw = str(os.environ.get(name, "")).strip()
+    if not raw:
+        return default
+    try:
+        return int(raw)
+    except ValueError:
+        return default
 
 
 def load_dotenv(path: Path = Path(".env")) -> None:
@@ -136,13 +161,20 @@ class AppHandler(SimpleHTTPRequestHandler):
     telegram_chat_id: str = ""
     telegram_insecure: bool = False
     telegram_http_proxy: str = ""
+    unsplash_access_key: str = ""
+    unsplash_upstream_proxy: str = ""
+    unsplash_proxy_timeout: float = UNSPLASH_PROXY_DEFAULT_TIMEOUT
+    unsplash_proxy_cache_ttl: int = UNSPLASH_PROXY_DEFAULT_CACHE_TTL
+    unsplash_proxy_insecure: bool = False
+    unsplash_cache: dict[tuple[str, tuple[tuple[str, str], ...]], tuple[float, int, str, bytes]] = {}
+    unsplash_cache_lock = threading.Lock()
 
     def cache_control_for_request(self) -> str:
         split = parse.urlsplit(self.path or "/")
         path = split.path or "/"
         query = split.query
 
-        if self.command not in {"GET", "HEAD"} or path.startswith("/api/"):
+        if self.command not in {"GET", "HEAD"} or path.startswith("/api/") or path.startswith("/proxy/"):
             return "no-store, max-age=0"
 
         if path in {"/", "/index.html", "/app.html"} or path.endswith(".html"):
@@ -211,21 +243,46 @@ class AppHandler(SimpleHTTPRequestHandler):
         super().end_headers()
 
     def do_OPTIONS(self) -> None:  # noqa: N802
-        if self.path.startswith("/api/"):
+        path = parse.urlsplit(self.path or "/").path or "/"
+        if path.startswith("/api/"):
             self.send_response(204)
             self.send_header("Access-Control-Allow-Origin", "*")
             self.send_header("Access-Control-Allow-Methods", "POST, OPTIONS")
             self.send_header("Access-Control-Allow-Headers", "Content-Type")
             self.end_headers()
             return
+        if path.startswith("/proxy/unsplash/"):
+            self.send_response(204)
+            self.send_header("Access-Control-Allow-Origin", "*")
+            self.send_header("Access-Control-Allow-Methods", "GET, OPTIONS")
+            self.send_header("Access-Control-Allow-Headers", "Content-Type, X-Unsplash-Key, Authorization")
+            self.end_headers()
+            return
         self.send_response(405)
         self.end_headers()
 
+    def do_GET(self) -> None:  # noqa: N802
+        split = parse.urlsplit(self.path or "/")
+        path = split.path or "/"
+        if path.startswith("/proxy/unsplash/"):
+            self.handle_unsplash_proxy(split)
+            return
+        super().do_GET()
+
+    def do_HEAD(self) -> None:  # noqa: N802
+        split = parse.urlsplit(self.path or "/")
+        path = split.path or "/"
+        if path.startswith("/proxy/unsplash/"):
+            self.handle_unsplash_proxy(split, send_body=False)
+            return
+        super().do_HEAD()
+
     def do_POST(self) -> None:  # noqa: N802
-        if self.path == "/api/leads":
+        path = parse.urlsplit(self.path or "/").path or "/"
+        if path == "/api/leads":
             self.handle_lead()
             return
-        if self.path == "/api/analytics":
+        if path == "/api/analytics":
             self.handle_analytics()
             return
         self.send_json(404, {"ok": False, "error": "not_found"})
@@ -238,6 +295,138 @@ class AppHandler(SimpleHTTPRequestHandler):
         self.send_header("Access-Control-Allow-Origin", "*")
         self.end_headers()
         self.wfile.write(body)
+
+    def send_proxy_payload(
+        self,
+        status: int,
+        body: bytes,
+        content_type: str = "application/json; charset=utf-8",
+        send_body: bool = True,
+    ) -> None:
+        self.send_response(status)
+        self.send_header("Content-Type", content_type)
+        self.send_header("Content-Length", str(len(body)))
+        self.send_header("Access-Control-Allow-Origin", "*")
+        self.send_header("Access-Control-Allow-Methods", "GET, OPTIONS")
+        self.send_header("Access-Control-Allow-Headers", "Content-Type, X-Unsplash-Key, Authorization")
+        self.end_headers()
+        if send_body:
+            self.wfile.write(body)
+
+    def normalize_unsplash_query(self, query: dict[str, list[str]]) -> str:
+        raw_per_page = (query.get("per_page") or ["32"])[0]
+        raw_order_by = (query.get("order_by") or ["latest"])[0]
+
+        try:
+            per_page = max(1, min(50, int(str(raw_per_page).strip())))
+        except ValueError:
+            per_page = 32
+
+        order_by = str(raw_order_by).strip().lower()
+        if order_by not in {"latest", "oldest", "popular"}:
+            order_by = "latest"
+
+        return parse.urlencode({"per_page": per_page, "order_by": order_by})
+
+    def extract_unsplash_access_key(self, query: dict[str, list[str]]) -> str:
+        key = (self.headers.get("X-Unsplash-Key") or "").strip()
+        if key:
+            return key
+
+        auth = (self.headers.get("Authorization") or "").strip()
+        if auth.lower().startswith("client-id "):
+            return auth[10:].strip()
+
+        query_key = str((query.get("access_key") or [""])[0]).strip()
+        if query_key:
+            return query_key
+
+        return self.unsplash_access_key.strip()
+
+    def fetch_unsplash(self, url: str, headers: dict[str, str]) -> tuple[int, str, bytes]:
+        cache_key = (url, tuple(sorted((k.lower(), v) for k, v in headers.items())))
+        cache_ttl = max(0, int(self.unsplash_proxy_cache_ttl))
+        now = time.time()
+
+        if cache_ttl > 0:
+            with self.unsplash_cache_lock:
+                hit = self.unsplash_cache.get(cache_key)
+                if hit and hit[0] > now:
+                    return hit[1], hit[2], hit[3]
+
+        handlers: list[request.BaseHandler] = []
+        upstream_proxy = self.unsplash_upstream_proxy.strip()
+        if upstream_proxy:
+            handlers.append(request.ProxyHandler({"http": upstream_proxy, "https": upstream_proxy}))
+        if self.unsplash_proxy_insecure:
+            handlers.append(request.HTTPSHandler(context=ssl._create_unverified_context()))  # noqa: S323
+        opener = request.build_opener(*handlers)
+
+        req = request.Request(url=url, headers=headers, method="GET")
+        timeout = max(2.0, float(self.unsplash_proxy_timeout))
+        try:
+            with opener.open(req, timeout=timeout) as resp:
+                status = int(resp.getcode() or 200)
+                body = resp.read()
+                content_type = resp.headers.get("Content-Type", "application/json; charset=utf-8")
+        except error.HTTPError as exc:
+            status = int(exc.code or 502)
+            body = exc.read() or b""
+            content_type = exc.headers.get("Content-Type", "application/json; charset=utf-8") if exc.headers else "application/json; charset=utf-8"
+        except Exception as exc:  # noqa: BLE001
+            payload = {"error": "upstream_unreachable", "message": str(exc)}
+            body = json.dumps(payload, ensure_ascii=False).encode("utf-8")
+            return 502, "application/json; charset=utf-8", body
+
+        if cache_ttl > 0 and 200 <= status < 300:
+            with self.unsplash_cache_lock:
+                self.unsplash_cache[cache_key] = (now + cache_ttl, status, content_type, body)
+
+        return status, content_type, body
+
+    def handle_unsplash_proxy(self, split: parse.SplitResult, send_body: bool = True) -> None:
+        path = split.path or ""
+        query = parse.parse_qs(split.query or "")
+
+        if path == "/proxy/unsplash/health":
+            payload = json.dumps({"ok": True, "ts": int(time.time())}, ensure_ascii=False).encode("utf-8")
+            self.send_proxy_payload(200, payload, send_body=send_body)
+            return
+
+        api_match = re.match(r"^/proxy/unsplash/api/users/([^/]+)/photos$", path)
+        if api_match:
+            username = parse.quote(api_match.group(1))
+            access_key = self.extract_unsplash_access_key(query)
+            if not access_key:
+                payload = json.dumps({"error": "missing_access_key"}, ensure_ascii=False).encode("utf-8")
+                self.send_proxy_payload(400, payload, send_body=send_body)
+                return
+            query_string = self.normalize_unsplash_query(query)
+            url = f"https://api.unsplash.com/users/{username}/photos?{query_string}"
+            headers = {
+                "Accept-Version": "v1",
+                "Authorization": f"Client-ID {access_key}",
+                "User-Agent": UNSPLASH_PROXY_USER_AGENT,
+            }
+            status, content_type, body = self.fetch_unsplash(url, headers)
+            self.send_proxy_payload(status, body, content_type=content_type, send_body=send_body)
+            return
+
+        public_match = re.match(r"^/proxy/unsplash/public/users/([^/]+)/photos$", path)
+        if public_match:
+            username = parse.quote(public_match.group(1))
+            query_string = self.normalize_unsplash_query(query)
+            url = f"https://unsplash.com/napi/users/{username}/photos?{query_string}"
+            headers = {
+                "Accept": "application/json",
+                "User-Agent": UNSPLASH_PROXY_USER_AGENT,
+            }
+            status, content_type, body = self.fetch_unsplash(url, headers)
+            self.send_proxy_payload(status, body, content_type=content_type, send_body=send_body)
+            return
+
+        payload = json.dumps({"error": "not_found"}, ensure_ascii=False).encode("utf-8")
+        self.send_proxy_payload(404, payload, send_body=send_body)
 
     def read_json_body(self) -> dict:
         raw_len = self.headers.get("Content-Length", "0")
@@ -346,9 +535,37 @@ class AppHandler(SimpleHTTPRequestHandler):
 
 
 def parse_args() -> argparse.Namespace:
-    parser = argparse.ArgumentParser(description="Serve static site + API for leads/analytics.")
+    parser = argparse.ArgumentParser(description="Serve static site + API for leads/analytics + Unsplash proxy.")
     parser.add_argument("--host", default="127.0.0.1", help="Bind host")
     parser.add_argument("--port", type=int, default=4173, help="Bind port")
+    parser.add_argument(
+        "--unsplash-upstream-proxy",
+        default=os.environ.get("UNSPLASH_UPSTREAM_PROXY", ""),
+        help="Optional upstream HTTP proxy for Unsplash proxy requests",
+    )
+    parser.add_argument(
+        "--unsplash-access-key",
+        default=os.environ.get("UNSPLASH_ACCESS_KEY", ""),
+        help="Default Unsplash Access Key for /proxy/unsplash/api/* routes",
+    )
+    parser.add_argument(
+        "--unsplash-proxy-timeout",
+        type=float,
+        default=env_float("UNSPLASH_PROXY_TIMEOUT", UNSPLASH_PROXY_DEFAULT_TIMEOUT),
+        help="Unsplash upstream timeout in seconds (default: 14)",
+    )
+    parser.add_argument(
+        "--unsplash-proxy-cache-ttl",
+        type=int,
+        default=env_int("UNSPLASH_PROXY_CACHE_TTL", UNSPLASH_PROXY_DEFAULT_CACHE_TTL),
+        help="Unsplash proxy in-memory cache TTL in seconds (default: 120)",
+    )
+    parser.add_argument(
+        "--unsplash-proxy-insecure",
+        action="store_true",
+        default=env_flag("UNSPLASH_PROXY_INSECURE", default=False),
+        help="Disable TLS cert verification for Unsplash proxy upstream",
+    )
     return parser.parse_args()
 
 
@@ -360,6 +577,11 @@ def main() -> int:
     AppHandler.telegram_chat_id = os.environ.get("TELEGRAM_CHAT_ID", "").strip()
     AppHandler.telegram_insecure = env_flag("TELEGRAM_INSECURE", default=False)
     AppHandler.telegram_http_proxy = os.environ.get("TELEGRAM_HTTP_PROXY", "").strip()
+    AppHandler.unsplash_upstream_proxy = args.unsplash_upstream_proxy.strip()
+    AppHandler.unsplash_access_key = args.unsplash_access_key.strip()
+    AppHandler.unsplash_proxy_timeout = max(2.0, float(args.unsplash_proxy_timeout))
+    AppHandler.unsplash_proxy_cache_ttl = max(0, int(args.unsplash_proxy_cache_ttl))
+    AppHandler.unsplash_proxy_insecure = bool(args.unsplash_proxy_insecure)
 
     httpd = ThreadingHTTPServer((args.host, args.port), AppHandler)
     print(json.dumps({
@@ -369,6 +591,12 @@ def main() -> int:
         "telegram_enabled": bool(AppHandler.telegram_token and AppHandler.telegram_chat_id),
         "telegram_insecure": AppHandler.telegram_insecure,
         "telegram_proxy": bool(AppHandler.telegram_http_proxy),
+        "unsplash_proxy_path": "/proxy/unsplash",
+        "unsplash_proxy_upstream": bool(AppHandler.unsplash_upstream_proxy),
+        "unsplash_proxy_access_key": bool(AppHandler.unsplash_access_key),
+        "unsplash_proxy_timeout": AppHandler.unsplash_proxy_timeout,
+        "unsplash_proxy_cache_ttl": AppHandler.unsplash_proxy_cache_ttl,
+        "unsplash_proxy_insecure": AppHandler.unsplash_proxy_insecure,
     }, ensure_ascii=False))
     try:
         httpd.serve_forever()

@@ -34,5 +34,5 @@ Output:
 
 `index.html` now loads Unsplash tab in this order:
 1. Local cache (`unsplash-local/manifest.json`)
-2. Online Unsplash via local proxy (`http://127.0.0.1:8787`)
+2. Online Unsplash via built-in site proxy (`/proxy/unsplash/public/...`)
 3. Online fallback chain (public endpoint / jina fallback)

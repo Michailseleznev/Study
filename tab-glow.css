@@ -65,6 +65,13 @@ body.tabs-stock{ --ga: 255,146,126; --gb: 255,106,186; --gc: 120,145,255; }
 body.tabs-nature{ --ga: 255,170,90; --gb: 255,105,80; --gc: 200,60,80; }
 body.tabs-unsplash{ --ga: 255,145,170; --gb: 255,195,125; --gc: 196,120,255; }
 
+@media (min-width: 981px){
+  .tab-glow{
+    --glow-run-opacity: 0.98;
+    filter: blur(1px) saturate(1.5) contrast(1.08);
+  }
+}
+
 @keyframes panelIn{
   0%{ opacity: 0; transform: translateY(6px); }
   100%{ opacity: 1; transform: translateY(0); }

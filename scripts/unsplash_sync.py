@@ -22,6 +22,7 @@ from urllib import error, parse, request
 
 USER_AGENT = "MellowPhotosUnsplashSync/1.0"
 UNSPLASH_CATEGORY = "Недавние фотографии"
+DEFAULT_PROXY_BASE = "http://127.0.0.1:4173/proxy/unsplash"
 
 
 class HttpClient:
@@ -93,8 +94,8 @@ def parse_args() -> argparse.Namespace:
     )
     parser.add_argument(
         "--proxy-base",
-        default=os.environ.get("UNSPLASH_PROXY_BASE", "http://127.0.0.1:8787"),
-        help="Local proxy base URL (default: http://127.0.0.1:8787)",
+        default=os.environ.get("UNSPLASH_PROXY_BASE", DEFAULT_PROXY_BASE),
+        help=f"Proxy base URL (default: {DEFAULT_PROXY_BASE})",
     )
     parser.add_argument("--direct", action="store_true", help="Bypass local proxy and call Unsplash directly")
     parser.add_argument(

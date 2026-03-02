@@ -12,11 +12,13 @@ python3 scripts/unsplash_local_proxy.py \
 
 ## 2) Sync latest Unsplash photos locally
 
+Run `server.py` from step 4 in another terminal first (or replace `--proxy-base` with `http://127.0.0.1:8787` if you use standalone `unsplash_local_proxy.py`).
+
 ```bash
 python3 scripts/unsplash_sync.py \
   --username mihmihfoto \
   --count 32 \
-  --proxy-base http://127.0.0.1:8787 \
+  --proxy-base http://127.0.0.1:4173/proxy/unsplash \
   --http-proxy "$UNSPLASH_UPSTREAM_PROXY" \
   --access-key "$UNSPLASH_ACCESS_KEY" \
   --insecure \

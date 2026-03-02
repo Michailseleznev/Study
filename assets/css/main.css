@@ -179,6 +179,80 @@
       100%{ transform: translate3d(-2.5vw,2vh,0) scale(1.02); opacity: 0.70; }
     }
 
+    @keyframes auroraShiftDesktop{
+      0%{ transform: translate3d(0,0,0) scale(1) rotate(0deg); opacity: 0.42; }
+      50%{ transform: translate3d(4.8vw,-3.3vh,0) scale(1.1) rotate(5deg); opacity: 0.7; }
+      100%{ transform: translate3d(-4.2vw,3.1vh,0) scale(1.06) rotate(-4deg); opacity: 0.56; }
+    }
+    @keyframes flowShiftDesktop{
+      0%{ transform: translate3d(0,0,0) scale(1); opacity: 0.62; }
+      50%{ transform: translate3d(-3.8vw,2.8vh,0) scale(1.1); opacity: 0.84; }
+      100%{ transform: translate3d(4.4vw,-2.3vh,0) scale(1.06); opacity: 0.72; }
+    }
+    @keyframes bloomShiftDesktop{
+      0%{ transform: translate3d(0,0,0) scale(1); opacity: 0.58; }
+      50%{ transform: translate3d(3.2vw,-2.4vh,0) scale(1.09); opacity: 0.8; }
+      100%{ transform: translate3d(-3.6vw,2.6vh,0) scale(1.05); opacity: 0.68; }
+    }
+    @keyframes veilDriftDesktop{
+      0%{ transform: translate3d(0,0,0) scale(1); opacity: 0.5; }
+      50%{ transform: translate3d(-2.8vw,2vh,0) scale(1.07); opacity: 0.74; }
+      100%{ transform: translate3d(3.4vw,-2.2vh,0) scale(1.04); opacity: 0.64; }
+    }
+    @keyframes prismShiftDesktop{
+      0%{ transform: translate3d(0,0,0) scale(1) rotate(0deg); opacity: 0.42; }
+      50%{ transform: translate3d(-3.2vw,2.4vh,0) scale(1.08) rotate(6deg); opacity: 0.64; }
+      100%{ transform: translate3d(3.8vw,-2.5vh,0) scale(1.05) rotate(-5deg); opacity: 0.54; }
+    }
+    @keyframes glowDriftDesktop{
+      0%{ transform: translate3d(0,0,0) scale(1); opacity: 0.64; }
+      50%{ transform: translate3d(3.8vw,-2.9vh,0) scale(1.09); opacity: 0.86; }
+      100%{ transform: translate3d(-4.4vw,3.3vh,0) scale(1.06); opacity: 0.76; }
+    }
+
+    @media (min-width: 981px){
+      .aurora{
+        animation-name: auroraShiftDesktop;
+        animation-duration: 48s;
+      }
+      .flow{
+        animation-name: flowShiftDesktop;
+        animation-duration: 19s;
+      }
+      .bloom{
+        animation-name: bloomShiftDesktop;
+        animation-duration: 23s;
+      }
+      .veil{
+        animation-name: veilDriftDesktop;
+        animation-duration: 26s;
+      }
+      .prism{
+        animation-name: prismShiftDesktop;
+        animation-duration: 39s;
+      }
+      .glow{
+        animation-name: glowDriftDesktop;
+        animation-duration: 15s;
+      }
+      .motion-enabled .section-animate{
+        transform: translateY(34px);
+        filter: blur(10px);
+      }
+      .io-reveal{
+        transform: translateY(26px);
+      }
+      .tabs .tab.io-reveal{
+        transform: translateY(18px);
+      }
+      .work.work-enter{
+        transform: translateY(30px) scale(.972);
+      }
+      .work:hover{
+        scale: 1.02;
+      }
+    }
+
     /* Futuristic overlays */
     .scanlines{
       pointer-events: none;

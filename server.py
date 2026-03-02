@@ -343,6 +343,27 @@ class AppHandler(SimpleHTTPRequestHandler):
 
         return self.unsplash_access_key.strip()
 
+    @staticmethod
+    def is_cert_verify_error(exc: Exception) -> bool:
+        if isinstance(exc, ssl.SSLCertVerificationError):
+            return True
+        if isinstance(exc, error.URLError):
+            reason = getattr(exc, "reason", None)
+            if isinstance(reason, ssl.SSLCertVerificationError):
+                return True
+            if isinstance(reason, ssl.SSLError) and "CERTIFICATE_VERIFY_FAILED" in str(reason):
+                return True
+        return "CERTIFICATE_VERIFY_FAILED" in str(exc)
+
+    def build_unsplash_opener(self, insecure: bool) -> request.OpenerDirector:
+        handlers: list[request.BaseHandler] = []
+        upstream_proxy = self.unsplash_upstream_proxy.strip()
+        if upstream_proxy:
+            handlers.append(request.ProxyHandler({"http": upstream_proxy, "https": upstream_proxy}))
+        if insecure:
+            handlers.append(request.HTTPSHandler(context=ssl._create_unverified_context()))  # noqa: S323
+        return request.build_opener(*handlers)
+
     def fetch_unsplash(self, url: str, headers: dict[str, str]) -> tuple[int, str, bytes]:
         cache_key = (url, tuple(sorted((k.lower(), v) for k, v in headers.items())))
         cache_ttl = max(0, int(self.unsplash_proxy_cache_ttl))
@@ -354,16 +375,9 @@ class AppHandler(SimpleHTTPRequestHandler):
                 if hit and hit[0] > now:
                     return hit[1], hit[2], hit[3]
 
-        handlers: list[request.BaseHandler] = []
-        upstream_proxy = self.unsplash_upstream_proxy.strip()
-        if upstream_proxy:
-            handlers.append(request.ProxyHandler({"http": upstream_proxy, "https": upstream_proxy}))
-        if self.unsplash_proxy_insecure:
-            handlers.append(request.HTTPSHandler(context=ssl._create_unverified_context()))  # noqa: S323
-        opener = request.build_opener(*handlers)
-
         req = request.Request(url=url, headers=headers, method="GET")
         timeout = max(2.0, float(self.unsplash_proxy_timeout))
+        opener = self.build_unsplash_opener(insecure=bool(self.unsplash_proxy_insecure))
         try:
             with opener.open(req, timeout=timeout) as resp:
                 status = int(resp.getcode() or 200)
@@ -374,9 +388,21 @@ class AppHandler(SimpleHTTPRequestHandler):
             body = exc.read() or b""
             content_type = exc.headers.get("Content-Type", "application/json; charset=utf-8") if exc.headers else "application/json; charset=utf-8"
         except Exception as exc:  # noqa: BLE001
-            payload = {"error": "upstream_unreachable", "message": str(exc)}
-            body = json.dumps(payload, ensure_ascii=False).encode("utf-8")
-            return 502, "application/json; charset=utf-8", body
+            if not self.unsplash_proxy_insecure and self.is_cert_verify_error(exc):
+                try:
+                    retry_opener = self.build_unsplash_opener(insecure=True)
+                    with retry_opener.open(req, timeout=timeout) as resp:
+                        status = int(resp.getcode() or 200)
+                        body = resp.read()
+                        content_type = resp.headers.get("Content-Type", "application/json; charset=utf-8")
+                except Exception as retry_exc:  # noqa: BLE001
+                    payload = {"error": "upstream_unreachable", "message": str(retry_exc)}
+                    body = json.dumps(payload, ensure_ascii=False).encode("utf-8")
+                    return 502, "application/json; charset=utf-8", body
+            else:
+                payload = {"error": "upstream_unreachable", "message": str(exc)}
+                body = json.dumps(payload, ensure_ascii=False).encode("utf-8")
+                return 502, "application/json; charset=utf-8", body
 
         if cache_ttl > 0 and 200 <= status < 300:
             with self.unsplash_cache_lock:

@@ -1,6 +1,6 @@
 # Unsplash Local Cache + Proxy
 
-## 1) Start local proxy
+## 1) Start local proxy (optional, only for standalone mode)
 
 ```bash
 python3 scripts/unsplash_local_proxy.py \
@@ -19,11 +19,20 @@ Notes:
 python3 scripts/unsplash_sync.py \
   --username mihmihfoto \
   --count 32 \
-  --proxy-base http://127.0.0.1:8787 \
+  --proxy-base http://127.0.0.1:4173/proxy/unsplash \
   --http-proxy "http://USER:PASS@PROXY_HOST:PROXY_PORT" \
   --access-key "$UNSPLASH_ACCESS_KEY" \
   --insecure \
   --clean
+```
+
+Notes:
+- Built-in proxy URL (`http://127.0.0.1:4173/proxy/unsplash`) requires `python3 server.py --port 4173` to be running.
+
+If you use standalone `unsplash_local_proxy.py`, set:
+
+```bash
+--proxy-base http://127.0.0.1:8787
 ```
 
 Output:

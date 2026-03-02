@@ -1362,6 +1362,27 @@
       .hero-media img{ height: 54vh; }
       .grid{ gap: 14px; }
       .work{ grid-column: span 6; }
+      .motion-enabled .section-animate{
+        transform: translateY(16px);
+        filter: blur(5px);
+        transition:
+          opacity .56s ease var(--section-delay, 0ms),
+          transform .62s cubic-bezier(.2,.75,.2,1) var(--section-delay, 0ms),
+          filter .52s ease var(--section-delay, 0ms);
+      }
+      .io-reveal{
+        transform: translateY(12px);
+        transition:
+          opacity .48s ease var(--io-delay, 0ms),
+          transform .54s cubic-bezier(.2,.75,.2,1) var(--io-delay, 0ms);
+      }
+      .tabs .tab.io-reveal{ transform: translateY(8px); }
+      .work.work-enter{ transform: translateY(12px) scale(.992); }
+      .work.work-enter.work-enter-active{
+        transition:
+          opacity .42s ease var(--work-enter-delay, 0ms),
+          transform .56s cubic-bezier(.2,.75,.2,1) var(--work-enter-delay, 0ms);
+      }
       #tab-unsplash:checked ~ #grid .grid-panel--unsplash{
         columns: 2;
         column-gap: 14px;
@@ -1379,6 +1400,12 @@
 
     @media (max-width: 640px){
       .work{ grid-column: span 12; }
+      .motion-enabled .section-animate{
+        transform: translateY(12px);
+        filter: blur(4px);
+      }
+      .io-reveal{ transform: translateY(9px); }
+      .tabs .tab.io-reveal{ transform: translateY(6px); }
       #tab-unsplash:checked ~ #grid .grid-panel--unsplash{ columns: 1; }
       #tab-unsplash:checked ~ #grid #tabGlow{
         top: clamp(104px, 18vh, 172px);

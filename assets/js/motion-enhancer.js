@@ -9,8 +9,23 @@
       (navigator.hardwareConcurrency && navigator.hardwareConcurrency <= 4) ||
       (navigator.deviceMemory && navigator.deviceMemory <= 4)
     );
-    var maxAnimatedCards = isLowPerfDevice ? 5 : 10;
-    var maxAnimatedUnsplashCards = isLowPerfDevice ? 0 : 8;
+
+    function isMobileViewport(){
+      return !!(window.matchMedia && window.matchMedia("(max-width: 980px)").matches);
+    }
+
+    function getMotionBudget(){
+      if (isMobileViewport() && isLowPerfDevice) {
+        return { cards: 3, unsplash: 0, sectionDelay: 48, revealDelay: 44, cardDelay: 36, cardSettle: 560 };
+      }
+      if (isLowPerfDevice) {
+        return { cards: 5, unsplash: 0, sectionDelay: 58, revealDelay: 58, cardDelay: 48, cardSettle: 680 };
+      }
+      if (isMobileViewport()) {
+        return { cards: 6, unsplash: 4, sectionDelay: 54, revealDelay: 52, cardDelay: 40, cardSettle: 620 };
+      }
+      return { cards: 10, unsplash: 8, sectionDelay: 70, revealDelay: 70, cardDelay: 60, cardSettle: 760 };
+    }
 
     var sectionSelectors = [".hero", "#portfolio", "#services", "#reviews", "#pricing", "#contact"];
     var sections = sectionSelectors
@@ -94,10 +109,11 @@
 
     function initSectionIntro(){
       document.body.classList.add("motion-enabled");
+      var introDelayStep = getMotionBudget().sectionDelay;
 
       for (var i = 0; i < sections.length; i++){
         sections[i].classList.add("section-animate");
-        sections[i].style.setProperty("--section-delay", (i * 70) + "ms");
+        sections[i].style.setProperty("--section-delay", (i * introDelayStep) + "ms");
       }
 
       if (prefersReduced || !supportsIO) {
@@ -129,6 +145,7 @@
       var nodes = host.querySelectorAll(revealSelector);
       var buckets = new Map();
       var fresh = [];
+      var revealDelayStep = getMotionBudget().revealDelay;
 
       for (var i = 0; i < nodes.length; i++){
         var el = nodes[i];
@@ -146,7 +163,7 @@
 
       buckets.forEach(function(items){
         for (var i = 0; i < items.length; i++){
-          var delay = Math.min(i, 8) * 70;
+          var delay = Math.min(i, 8) * revealDelayStep;
           items[i].style.setProperty("--io-delay", delay + "ms");
         }
       });
@@ -224,6 +241,7 @@
     function animateVisibleWorkCards(){
       if (prefersReduced) return;
       var panels = document.querySelectorAll(".grid-panel");
+      var budget = getMotionBudget();
 
       for (var p = 0; p < panels.length; p++){
         var panel = panels[p];
@@ -235,8 +253,8 @@
         if (!cards.length) continue;
 
         var panelLimit = panel.classList.contains("grid-panel--unsplash")
-          ? maxAnimatedUnsplashCards
-          : maxAnimatedCards;
+          ? budget.unsplash
+          : budget.cards;
         var activateList = [];
 
         for (var i = 0; i < cards.length; i++){
@@ -249,7 +267,7 @@
             continue;
           }
 
-          var delay = Math.min(i, 8) * 60;
+          var delay = Math.min(i, 8) * budget.cardDelay;
           card.classList.remove("work-enter-active");
           card.style.setProperty("--work-enter-delay", delay + "ms");
           card.classList.add("work-enter");
@@ -260,7 +278,7 @@
               el.classList.remove("work-enter", "work-enter-active");
               el.style.removeProperty("--work-enter-delay");
             };
-          }(card), 760 + delay);
+          }(card), budget.cardSettle + delay);
         }
 
         if (!activateList.length) continue;

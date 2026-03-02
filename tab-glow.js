@@ -145,6 +145,55 @@ if (typeof document !== "undefined") {
       "tab-unsplash": ".grid-panel--unsplash"
     };
 
+    function isMobileViewport(){
+      return !!(window.matchMedia && window.matchMedia("(max-width: 980px)").matches);
+    }
+
+    function isLowPerfDevice(){
+      var cores = Number(navigator.hardwareConcurrency) || 0;
+      var memory = Number(navigator.deviceMemory) || 0;
+      return (cores > 0 && cores <= 4) || (memory > 0 && memory <= 4);
+    }
+
+    function getGlowTimingProfile(){
+      var mobile = isMobileViewport();
+      var lowPerf = isLowPerfDevice();
+
+      if (mobile && lowPerf) {
+        return {
+          durationMs: 1600,
+          delayStepMs: 70,
+          pulseDelayMs: 44,
+          minRepeatGapMs: 260
+        };
+      }
+
+      if (mobile) {
+        return {
+          durationMs: 1850,
+          delayStepMs: 90,
+          pulseDelayMs: 52,
+          minRepeatGapMs: 220
+        };
+      }
+
+      if (lowPerf) {
+        return {
+          durationMs: 2000,
+          delayStepMs: 100,
+          pulseDelayMs: 56,
+          minRepeatGapMs: 220
+        };
+      }
+
+      return {
+        durationMs: 2200,
+        delayStepMs: 120,
+        pulseDelayMs: 60,
+        minRepeatGapMs: 180
+      };
+    }
+
     function getGlowPaths(){
       var glow = document.getElementById("tabGlow");
       if (!glow) return null;
@@ -469,6 +518,11 @@ if (typeof document !== "undefined") {
     function play(){
       var glow = document.getElementById("tabGlow");
       if (!glow) return;
+      var timing = getGlowTimingProfile();
+      var stopAfter = timing.durationMs + (timing.delayStepMs * 4) + 260;
+
+      glow.style.setProperty("--glow-run-duration", timing.durationMs + "ms");
+      glow.style.setProperty("--glow-delay-step", timing.delayStepMs + "ms");
 
       glow.classList.remove("run");
       if (rafA) cancelAnimationFrame(rafA);
@@ -481,12 +535,13 @@ if (typeof document !== "undefined") {
       if (stopTimer) clearTimeout(stopTimer);
       stopTimer = setTimeout(function(){
         glow.classList.remove("run");
-      }, 3000);
+      }, stopAfter);
     }
 
     function pulse(id){
+      var timing = getGlowTimingProfile();
       var now = Date.now();
-      if (id === lastPulseId && (now - lastPulseAt) < 180) return;
+      if (id === lastPulseId && (now - lastPulseAt) < timing.minRepeatGapMs) return;
       lastPulseId = id;
       lastPulseAt = now;
 
@@ -495,7 +550,7 @@ if (typeof document !== "undefined") {
         applyTheme(id);
         scheduleGlowLayout(id);
         play();
-      }, 60);
+      }, timing.pulseDelayMs);
     }
 
     bindGlowLayoutObservers();

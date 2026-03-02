@@ -4,6 +4,9 @@
   top: 50%;
   width: 100vw;
   height: 90vh;
+  --glow-run-duration: 2.2s;
+  --glow-delay-step: 120ms;
+  --glow-run-opacity: 0.92;
   pointer-events: none;
   opacity: 0;
   z-index: 0;
@@ -26,13 +29,13 @@
 }
 
 .tab-glow.run .glow-path{
-  animation: lineSweep 2.2s ease-in-out;
+  animation: lineSweep var(--glow-run-duration, 2.2s) ease-in-out;
 }
-.tab-glow.run{ opacity: 0.92; }
-.tab-glow.run .glow-path.b{ animation-delay: 120ms; }
-.tab-glow.run .glow-path.c{ animation-delay: 240ms; }
-.tab-glow.run .glow-path.d{ animation-delay: 360ms; }
-.tab-glow.run .glow-path.e{ animation-delay: 480ms; }
+.tab-glow.run{ opacity: var(--glow-run-opacity, 0.92); }
+.tab-glow.run .glow-path.b{ animation-delay: var(--glow-delay-step, 120ms); }
+.tab-glow.run .glow-path.c{ animation-delay: calc(var(--glow-delay-step, 120ms) * 2); }
+.tab-glow.run .glow-path.d{ animation-delay: calc(var(--glow-delay-step, 120ms) * 3); }
+.tab-glow.run .glow-path.e{ animation-delay: calc(var(--glow-delay-step, 120ms) * 4); }
 
 @keyframes lineSweep{
   0%{ opacity: 0; stroke-dashoffset: var(--dash-len, 1600); }
@@ -74,11 +77,24 @@ body.tabs-unsplash{ --ga: 255,145,170; --gb: 255,195,125; --gc: 196,120,255; }
   }
 
   .tab-glow{
+    --glow-run-duration: 1.85s;
+    --glow-delay-step: 90ms;
+    --glow-run-opacity: 0.84;
     width: 185vw;
     height: 165vh;
     left: 50%;
     top: 50%;
+    filter: blur(0.95px) saturate(1.24) contrast(1.03);
     transform: translate3d(-50%, -50%, 0) rotate(-90deg);
+  }
+}
+
+@media (max-width: 640px){
+  .tab-glow{
+    --glow-run-duration: 1.65s;
+    --glow-delay-step: 72ms;
+    --glow-run-opacity: 0.8;
+    filter: blur(0.78px) saturate(1.18) contrast(1.02);
   }
 }
 

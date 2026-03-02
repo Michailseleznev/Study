@@ -18,13 +18,17 @@
       if (isMobileViewport() && isLowPerfDevice) {
         return { cards: 3, unsplash: 0, sectionDelay: 48, revealDelay: 44, cardDelay: 36, cardSettle: 560 };
       }
-      if (isLowPerfDevice) {
-        return { cards: 5, unsplash: 0, sectionDelay: 58, revealDelay: 58, cardDelay: 48, cardSettle: 680 };
-      }
       if (isMobileViewport()) {
         return { cards: 6, unsplash: 4, sectionDelay: 54, revealDelay: 52, cardDelay: 40, cardSettle: 620 };
       }
-      return { cards: 10, unsplash: 8, sectionDelay: 70, revealDelay: 70, cardDelay: 60, cardSettle: 760 };
+      return {
+        cards: isLowPerfDevice ? 5 : 10,
+        unsplash: isLowPerfDevice ? 0 : 8,
+        sectionDelay: 70,
+        revealDelay: 70,
+        cardDelay: 60,
+        cardSettle: 760
+      };
     }
 
     var sectionSelectors = [".hero", "#portfolio", "#services", "#reviews", "#pricing", "#contact"];

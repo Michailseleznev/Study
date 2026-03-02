@@ -177,20 +177,12 @@ if (typeof document !== "undefined") {
         };
       }
 
-      if (lowPerf) {
-        return {
-          durationMs: 2000,
-          delayStepMs: 100,
-          pulseDelayMs: 56,
-          minRepeatGapMs: 220
-        };
-      }
-
       return {
         durationMs: 2200,
         delayStepMs: 120,
         pulseDelayMs: 60,
-        minRepeatGapMs: 180
+        minRepeatGapMs: 180,
+        stopAfterMs: 3000
       };
     }
 
@@ -519,7 +511,7 @@ if (typeof document !== "undefined") {
       var glow = document.getElementById("tabGlow");
       if (!glow) return;
       var timing = getGlowTimingProfile();
-      var stopAfter = timing.durationMs + (timing.delayStepMs * 4) + 260;
+      var stopAfter = timing.stopAfterMs || (timing.durationMs + (timing.delayStepMs * 4) + 260);
 
       glow.style.setProperty("--glow-run-duration", timing.durationMs + "ms");
       glow.style.setProperty("--glow-delay-step", timing.delayStepMs + "ms");

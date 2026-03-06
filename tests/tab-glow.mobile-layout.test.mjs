@@ -1,7 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-
-import { computeMobileGlowLayoutMetrics } from "../tab-glow.js";
+import { computeMobileGlowLayoutMetrics } from "../src/lib/glowLayout.js";
 
 test("mobile layout spans from hero bottom to page bottom", function(){
   var metrics = computeMobileGlowLayoutMetrics({

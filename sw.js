@@ -1,16 +1,10 @@
-const CACHE_VERSION = "mellow-v7";
+const CACHE_VERSION = "mellow-v9";
 const CORE_CACHE = `${CACHE_VERSION}-core`;
 const RUNTIME_CACHE = `${CACHE_VERSION}-runtime`;
 
 const CORE_ASSETS = [
   "/",
   "/index.html",
-  "/tab-glow.css",
-  "/tab-glow.js",
-  "/assets/css/main.css",
-  "/assets/js/unsplash-tabs.js",
-  "/assets/js/app-core.js",
-  "/assets/js/motion-enhancer.js",
   "/assets/img/optimized/manifest.json",
   "/unsplash-local/manifest.json"
 ];

@@ -77,42 +77,20 @@ TELEGRAM_CHAT_ID=...
 # UNSPLASH_ACCESS_KEY=...
 ```
 
-## 5. Unsplash: локальный кеш и прокси
+## 5. Unsplash: локальный кеш и встроенный proxy
 
-### 5.1 Запуск отдельного локального прокси (опционально)
+Единственный поддерживаемый путь для Unsplash proxy - встроенный обработчик в `server.py` на `/proxy/unsplash`.
+Отдельный `scripts/unsplash_local_proxy.py` больше не используется, чтобы не поддерживать два разных поведения.
 
-```bash
-python3 scripts/unsplash_local_proxy.py \
-  --host 127.0.0.1 \
-  --port 8787 \
-  --upstream-proxy "$UNSPLASH_UPSTREAM_PROXY" \
-  --insecure
-```
+### 5.1 Синхронизация последних фото Unsplash
 
-Примечание: `--upstream-proxy` должен быть рабочим внешним proxy с подходящим egress-IP.
-
-### 5.2 Синхронизация последних фото Unsplash
-
-Вариант через встроенный прокси сайта (нужен запущенный `server.py` на `:4173`):
+Нужен запущенный `server.py` на `:4173`:
 
 ```bash
 python3 scripts/unsplash_sync.py \
   --username mihmihfoto \
   --count 32 \
   --proxy-base http://localhost:4173/proxy/unsplash \
-  --http-proxy "$UNSPLASH_UPSTREAM_PROXY" \
-  --access-key "$UNSPLASH_ACCESS_KEY" \
-  --insecure \
-  --clean
-```
-
-Вариант через standalone proxy:
-
-```bash
-python3 scripts/unsplash_sync.py \
-  --username mihmihfoto \
-  --count 32 \
-  --proxy-base http://localhost:8787 \
   --http-proxy "$UNSPLASH_UPSTREAM_PROXY" \
   --access-key "$UNSPLASH_ACCESS_KEY" \
   --insecure \

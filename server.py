@@ -264,7 +264,7 @@ class AppHandler(SimpleHTTPRequestHandler):
             "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; "
             "font-src 'self' https://fonts.gstatic.com data:; "
             "script-src 'self' 'unsafe-inline'; "
-            "connect-src 'self' http://127.0.0.1:8787 https://r.jina.ai https://unsplash.com https://api.unsplash.com; "
+            "connect-src 'self' https://r.jina.ai https://unsplash.com https://api.unsplash.com; "
             "frame-ancestors 'self'; base-uri 'self'; form-action 'self';"
         )
         super().end_headers()

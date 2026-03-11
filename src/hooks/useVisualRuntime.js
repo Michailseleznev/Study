@@ -223,12 +223,6 @@ function initWorkImageFade(root, prefersReducedMotion) {
       continue;
     }
 
-    if (image.closest(".grid-panel--unsplash")) {
-      image.removeAttribute("data-fade-ready");
-      image.classList.add("img-loaded");
-      continue;
-    }
-
     image.setAttribute("data-fade-ready", "1");
     const show = () => {
       image.removeAttribute("data-fade-ready");

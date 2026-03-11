@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Generate responsive AVIF/WebP/JPEG variants and a manifest for runtime srcset mapping.
+Generate responsive image variants and a manifest for runtime srcset mapping.
 """
 
 from __future__ import annotations
@@ -24,10 +24,16 @@ DEFAULT_INPUT_DIRS = [
 ]
 DEFAULT_EXTS = {".jpg", ".jpeg", ".png"}
 DEFAULT_WIDTHS = [480, 960, 1600]
+SUPPORTED_FORMATS = ("jpg", "webp", "avif")
+FORMAT_EXTENSIONS = {
+    "jpg": ".jpg",
+    "webp": ".webp",
+    "avif": ".avif",
+}
 
 
 def parse_args() -> argparse.Namespace:
-    parser = argparse.ArgumentParser(description="Optimize images to AVIF/WebP/JPEG srcset variants.")
+    parser = argparse.ArgumentParser(description="Optimize images to responsive srcset variants.")
     parser.add_argument(
         "--input-dir",
         action="append",
@@ -43,6 +49,13 @@ def parse_args() -> argparse.Namespace:
         "--manifest",
         default="assets/img/optimized/manifest.json",
         help="Manifest JSON output path.",
+    )
+    parser.add_argument(
+        "--format",
+        dest="formats",
+        action="append",
+        choices=SUPPORTED_FORMATS,
+        help="Output format to generate. Repeat to build multiple formats. Defaults to jpg only.",
     )
     parser.add_argument(
         "--quality-jpg",
@@ -68,6 +81,15 @@ def parse_args() -> argparse.Namespace:
         help="Rebuild variants even if files exist.",
     )
     return parser.parse_args()
+
+
+def normalize_formats(formats: list[str] | None) -> list[str]:
+    requested = formats or ["jpg"]
+    ordered: list[str] = []
+    for fmt in requested:
+        if fmt not in ordered:
+            ordered.append(fmt)
+    return ordered
 
 
 def make_key(path: Path) -> str:
@@ -104,17 +126,51 @@ def resized(img: Image.Image, width: int) -> Image.Image:
     return img.resize((width, height), Image.Resampling.LANCZOS)
 
 
+def save_variant(img: Image.Image, fmt: str, path: Path, args: argparse.Namespace) -> None:
+    if fmt == "jpg":
+        img.save(path, format="JPEG", quality=max(1, min(100, args.quality_jpg)), optimize=True, progressive=True)
+        return
+    if fmt == "webp":
+        img.save(path, format="WEBP", quality=max(1, min(100, args.quality_webp)), method=6)
+        return
+    if fmt == "avif":
+        img.save(path, format="AVIF", quality=max(1, min(100, args.quality_avif)))
+        return
+    raise ValueError(f"Unsupported format: {fmt}")
+
+
+def remove_stale_outputs(out_dir: Path, manifest_path: Path, expected_files: set[str]) -> int:
+    removed = 0
+    for candidate in out_dir.rglob("*"):
+        if not candidate.is_file():
+            continue
+        if candidate.resolve() == manifest_path:
+            continue
+        if candidate.suffix.lower() not in FORMAT_EXTENSIONS.values():
+            continue
+
+        rel_path = candidate.relative_to(out_dir).as_posix()
+        if rel_path in expected_files:
+            continue
+
+        candidate.unlink()
+        removed += 1
+    return removed
+
+
 def main() -> int:
     args = parse_args()
     root = Path(".").resolve()
 
     in_dirs = args.input_dir if args.input_dir else DEFAULT_INPUT_DIRS
+    formats = normalize_formats(args.formats)
     out_dir = (root / args.output_dir).resolve()
     manifest_path = (root / args.manifest).resolve()
     out_dir.mkdir(parents=True, exist_ok=True)
 
     files = collect_images(root, in_dirs)
     manifest_files: dict[str, dict[str, object]] = {}
+    expected_output_files: set[str] = set()
 
     for src in files:
         rel_src = src.relative_to(root).as_posix()
@@ -127,9 +183,7 @@ def main() -> int:
             widths.append(src_w)
             widths = sorted(set(widths))
 
-            avif_srcset: list[str] = []
-            webp_srcset: list[str] = []
-            jpg_srcset: list[str] = []
+            srcsets = {fmt: [] for fmt in formats}
 
             fallback_width = widths[min(1, len(widths) - 1)]
             fallback_file = ""
@@ -138,37 +192,30 @@ def main() -> int:
                 img = resized(base, w)
                 stem = f"{key}-{w}"
 
-                avif_name = f"{stem}.avif"
-                webp_name = f"{stem}.webp"
-                jpg_name = f"{stem}.jpg"
+                for fmt in formats:
+                    filename = f"{stem}{FORMAT_EXTENSIONS[fmt]}"
+                    variant_path = out_dir / filename
+                    if args.force or not variant_path.exists():
+                        save_variant(img, fmt, variant_path, args)
 
-                avif_path = out_dir / avif_name
-                webp_path = out_dir / webp_name
-                jpg_path = out_dir / jpg_name
+                    srcsets[fmt].append(f"{args.output_dir}/{filename} {w}w")
+                    expected_output_files.add(filename)
 
-                if args.force or not avif_path.exists():
-                    img.save(avif_path, format="AVIF", quality=max(1, min(100, args.quality_avif)))
-                if args.force or not webp_path.exists():
-                    img.save(webp_path, format="WEBP", quality=max(1, min(100, args.quality_webp)), method=6)
-                if args.force or not jpg_path.exists():
-                    img.save(jpg_path, format="JPEG", quality=max(1, min(100, args.quality_jpg)), optimize=True, progressive=True)
+                    if w == fallback_width and (fmt == "jpg" or ("jpg" not in formats and fmt == formats[0])):
+                        fallback_file = f"{args.output_dir}/{filename}"
 
-                avif_srcset.append(f"{args.output_dir}/{avif_name} {w}w")
-                webp_srcset.append(f"{args.output_dir}/{webp_name} {w}w")
-                jpg_srcset.append(f"{args.output_dir}/{jpg_name} {w}w")
-
-                if w == fallback_width:
-                    fallback_file = f"{args.output_dir}/{jpg_name}"
-
-        manifest_files[rel_src] = {
+        manifest_entry = {
             "sizes": "(max-width: 860px) 92vw, (max-width: 1280px) 46vw, 33vw",
-            "avif": {"srcset": ", ".join(avif_srcset)},
-            "webp": {"srcset": ", ".join(webp_srcset)},
-            "jpg": {"srcset": ", ".join(jpg_srcset)},
-            "fallback": fallback_file or jpg_srcset[0].split(" ")[0],
+            "fallback": fallback_file or srcsets[formats[0]][0].split(" ")[0],
             "width": src_w,
             "height": src_h,
         }
+        for fmt, values in srcsets.items():
+            manifest_entry[fmt] = {"srcset": ", ".join(values)}
+
+        manifest_files[rel_src] = manifest_entry
+
+    removed_files = remove_stale_outputs(out_dir, manifest_path, expected_output_files)
 
     manifest = {
         "version": 1,
@@ -182,6 +229,8 @@ def main() -> int:
     print(json.dumps({
         "status": "ok",
         "optimized": len(manifest_files),
+        "formats": formats,
+        "removed": removed_files,
         "manifest": str(manifest_path),
         "output": str(out_dir),
     }, ensure_ascii=False))

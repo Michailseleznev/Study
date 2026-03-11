@@ -1,29 +1,8 @@
-import { buildLightboxSrc } from "../../lib/buildLightboxSrc";
-
-export default function WorkCard({ card, onOpen }) {
-  const handleOpen = () => {
-    onOpen({
-      category: card.category,
-      desc: card.story || card.desc || "",
-      src: card.full || buildLightboxSrc(card.src),
-      title: card.title
-    });
-  };
-
-  const handleKeyDown = (event) => {
-    if (event.key !== "Enter" && event.key !== " ") return;
-    event.preventDefault();
-    handleOpen();
-  };
-
+export default function WorkCard({ card }) {
   return (
     <article
       className="work"
       data-origin={card.origin || "local"}
-      onClick={handleOpen}
-      onKeyDown={handleKeyDown}
-      role="button"
-      tabIndex={0}
     >
       <span className="scan"></span>
       <img

@@ -1,8 +1,8 @@
 import { useEffect, useRef } from "react";
 import {
+  computeDesktopGlowTop,
   computeMobileGlowLayoutMetrics,
-  DESKTOP_GLOW_LAYOUT,
-  DESKTOP_UNSPLASH_GLOW_TOP
+  DESKTOP_GLOW_LAYOUT
 } from "../lib/glowLayout";
 
 const TAB_CLASS_MAP = {
@@ -332,15 +332,7 @@ export function usePortfolioGlow(activeTab, contentVersion = 0) {
         return;
       }
 
-      if (tabId === "tab-unsplash") {
-        const unsplashTop = Math.min(
-          Math.max(panelHeight * DESKTOP_UNSPLASH_GLOW_TOP.fromPanel, DESKTOP_UNSPLASH_GLOW_TOP.minPx),
-          DESKTOP_UNSPLASH_GLOW_TOP.maxPx
-        );
-        glow.style.top = `${Math.round(unsplashTop)}px`;
-      } else {
-        glow.style.top = "50%";
-      }
+      glow.style.top = computeDesktopGlowTop(tabId, panelHeight);
 
       const desktopSweep = Math.min(
         DESKTOP_GLOW_LAYOUT.maxSweepPx,
@@ -468,6 +460,7 @@ export function usePortfolioGlow(activeTab, contentVersion = 0) {
     if (!activeTab) return;
 
     const body = document.body;
+    const glow = document.getElementById("tabGlow");
     TAB_CLASS_LIST.forEach((className) => {
       body.classList.remove(className);
     });
@@ -487,12 +480,29 @@ export function usePortfolioGlow(activeTab, contentVersion = 0) {
     const fallbackPalette = palette?.every(Boolean) ? palette : TAB_PALETTES[activeTab];
 
     if (fallbackPalette) {
-      body.style.setProperty("--ga", boostLineColor(fallbackPalette[0], 0.25, 0.12));
-      body.style.setProperty("--gb", boostLineColor(fallbackPalette[1], 0.25, 0.12));
-      body.style.setProperty("--gc", boostLineColor(fallbackPalette[2], 0.25, 0.12));
+      const first = boostLineColor(fallbackPalette[0], 0.25, 0.12);
+      const second = boostLineColor(fallbackPalette[1], 0.25, 0.12);
+      const third = boostLineColor(fallbackPalette[2], 0.25, 0.12);
+
+      body.style.setProperty("--ga", first);
+      body.style.setProperty("--gb", second);
+      body.style.setProperty("--gc", third);
+      if (glow) {
+        glow.style.setProperty("--glow-a", `rgba(${first},1)`);
+        glow.style.setProperty("--glow-b", `rgba(${second},0.98)`);
+        glow.style.setProperty("--glow-c", `rgba(${third},0.96)`);
+      }
+    } else {
+      body.style.removeProperty("--ga");
+      body.style.removeProperty("--gb");
+      body.style.removeProperty("--gc");
+      if (glow) {
+        glow.style.removeProperty("--glow-a");
+        glow.style.removeProperty("--glow-b");
+        glow.style.removeProperty("--glow-c");
+      }
     }
 
-    const glow = document.getElementById("tabGlow");
     const paths = pathCacheRef.current || {
       a: glow?.querySelector(".glow-path.a"),
       b: glow?.querySelector(".glow-path.b"),
@@ -547,12 +557,7 @@ export function usePortfolioGlow(activeTab, contentVersion = 0) {
           glow.style.height = `${mobileLayout.height}px`;
           glow.style.transform = "translate3d(-50%, -50%, 0) rotate(-90deg)";
         } else {
-          glow.style.top = activeTab === "tab-unsplash"
-            ? `${Math.round(Math.min(
-              Math.max(panelHeight * DESKTOP_UNSPLASH_GLOW_TOP.fromPanel, DESKTOP_UNSPLASH_GLOW_TOP.minPx),
-              DESKTOP_UNSPLASH_GLOW_TOP.maxPx
-            ))}px`
-            : "50%";
+          glow.style.top = computeDesktopGlowTop(activeTab, panelHeight);
           glow.style.width = `${Math.round(Math.min(
             DESKTOP_GLOW_LAYOUT.maxSweepPx,
             Math.max(gridWidth * DESKTOP_GLOW_LAYOUT.sweepFromGrid, DESKTOP_GLOW_LAYOUT.minSweepPx)
@@ -643,12 +648,7 @@ export function usePortfolioGlow(activeTab, contentVersion = 0) {
       return;
     }
 
-    glow.style.top = activeTab === "tab-unsplash"
-      ? `${Math.round(Math.min(
-        Math.max(panelHeight * DESKTOP_UNSPLASH_GLOW_TOP.fromPanel, DESKTOP_UNSPLASH_GLOW_TOP.minPx),
-        DESKTOP_UNSPLASH_GLOW_TOP.maxPx
-      ))}px`
-      : "50%";
+    glow.style.top = computeDesktopGlowTop(activeTab, panelHeight);
     glow.style.width = `${Math.round(Math.min(
       DESKTOP_GLOW_LAYOUT.maxSweepPx,
       Math.max(gridWidth * DESKTOP_GLOW_LAYOUT.sweepFromGrid, DESKTOP_GLOW_LAYOUT.minSweepPx)

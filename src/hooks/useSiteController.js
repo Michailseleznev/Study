@@ -9,7 +9,7 @@ import { useUnsplashGallery } from "./useUnsplashGallery";
 import { useVisualRuntime } from "./useVisualRuntime";
 
 const HERO_WORDS = ["портреты", "студия", "креатив", "сток", "природа"];
-const ACTIVE_SECTION_IDS = ["portfolio", "services", "pricing", "reviews", "faq", "contact"];
+const ACTIVE_SECTION_IDS = ["portfolio", "services", "reviews", "faq", "pricing", "contact"];
 
 const INITIAL_BOOKING_VALUES = {
   date: "",

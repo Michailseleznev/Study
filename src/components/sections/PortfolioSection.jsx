@@ -6,7 +6,6 @@ import WorkCard from "../ui/WorkCard";
 
 export default function PortfolioSection({
   activeTab,
-  onOpenLightbox,
   onTabChange,
   trackEvent,
   unsplashState
@@ -15,7 +14,7 @@ export default function PortfolioSection({
     <section id="portfolio" className="tight">
       <div className="container">
         <SectionHead title="Мои работы">
-          Категории: студийные съёмки, портреты, креативные съемки, стоковые фотографии и природа. Показываю по 4 кадра из каждой папки + отдельную вкладку «Недавние фотографии» из Unsplash. Нажми на фото — откроется просмотр с описанием.
+          Категории: студийные съёмки, портреты, креативные съемки, стоковые фотографии и природа. Показываю по 4 карточки из каждой папки + отдельную вкладку «Недавние фотографии» из Unsplash.
         </SectionHead>
 
         <div className="portfolio-tabs">
@@ -57,7 +56,6 @@ export default function PortfolioSection({
                   <WorkCard
                     key={card.src}
                     card={{ ...card, category: panel.category }}
-                    onOpen={onOpenLightbox}
                   />
                 ))}
               </div>
@@ -87,7 +85,7 @@ export default function PortfolioSection({
 
               {unsplashState.status === "ready" && unsplashState.items.length ? (
                 unsplashState.items.map((item) => (
-                  <WorkCard key={item.id} card={item} onOpen={onOpenLightbox} />
+                  <WorkCard key={item.id} card={item} />
                 ))
               ) : (
                 <div className="empty">{unsplashState.message}</div>

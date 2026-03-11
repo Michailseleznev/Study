@@ -30,6 +30,18 @@ export const DESKTOP_UNSPLASH_GLOW_TOP = {
   maxPx: 280
 };
 
+export function computeDesktopGlowTop(tabId, panelHeight) {
+  if (tabId !== "tab-unsplash") return "50%";
+
+  const measuredPanelHeight = Math.max(0, Number(panelHeight) || 0);
+  const top = Math.min(
+    Math.max(measuredPanelHeight * DESKTOP_UNSPLASH_GLOW_TOP.fromPanel, DESKTOP_UNSPLASH_GLOW_TOP.minPx),
+    DESKTOP_UNSPLASH_GLOW_TOP.maxPx
+  );
+
+  return `${Math.round(top)}px`;
+}
+
 export function computeMobileGlowLayoutMetrics(input) {
   const panelHeight = Math.max(0, Number(input?.panelHeight) || 0);
   const gridWidth = Math.max(0, Number(input?.gridWidth) || 0);

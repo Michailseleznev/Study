@@ -14,11 +14,29 @@ export const heroContent = {
   }
 };
 
+export const stackPreview = {
+  ariaLabel: "Подборка технологий",
+  items: [
+    {
+      id: "react-tooling",
+      prefix: "React + его приколюхи в виде ",
+      accent: "роутера",
+      suffix: ", компилятора и тп",
+      active: true
+    },
+    {
+      id: "vue-vite",
+      text: "Vue 3 + vite компилятор с Vue router"
+    }
+  ],
+  hint: "Нажмите \"/\" чтобы быстро открыть этот блок"
+};
+
 export const navigationLinks = [
   { href: "#portfolio", label: "Портфолио" },
-  { href: "#pricing", label: "Цены" },
   { href: "#reviews", label: "Отзывы" },
   { href: "#faq", label: "FAQ" },
+  { href: "#pricing", label: "Цены" },
   { href: "#contact", label: "Заказать" }
 ];
 
@@ -32,9 +50,9 @@ export const serviceMenuLinks = [
 export const drawerLinks = [
   { href: "#portfolio", label: "Портфолио" },
   { href: "#services", label: "Услуги" },
-  { href: "#pricing", label: "Цены" },
   { href: "#reviews", label: "Отзывы" },
   { href: "#faq", label: "FAQ" },
+  { href: "#pricing", label: "Цены" },
   { href: "#contact", label: "Заказать" }
 ];
 

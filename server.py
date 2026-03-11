@@ -5,6 +5,7 @@ import argparse
 import html
 import json
 import os
+import posixpath
 import re
 import ssl
 import threading
@@ -19,6 +20,7 @@ DATA_DIR = Path("data")
 LEADS_PATH = DATA_DIR / "leads.ndjson"
 ANALYTICS_PATH = DATA_DIR / "analytics.ndjson"
 NDJSON_WRITE_LOCK = threading.Lock()
+DEFAULT_SITE_ROOT = Path("dist")
 
 UNSPLASH_PROXY_USER_AGENT = "MellowServerUnsplashProxy/1.0"
 UNSPLASH_PROXY_DEFAULT_TIMEOUT = 14.0
@@ -168,6 +170,31 @@ class AppHandler(SimpleHTTPRequestHandler):
     unsplash_proxy_insecure: bool = False
     unsplash_cache: dict[tuple[str, tuple[tuple[str, str], ...]], tuple[float, int, str, bytes]] = {}
     unsplash_cache_lock = threading.Lock()
+    site_root: Path = DEFAULT_SITE_ROOT.resolve()
+
+    def translate_path(self, path: str) -> str:
+        path = path.split("?", 1)[0]
+        path = path.split("#", 1)[0]
+        trailing_slash = path.endswith("/")
+
+        try:
+            path = parse.unquote(path, errors="surrogatepass")
+        except UnicodeDecodeError:
+            path = parse.unquote(path)
+
+        normalized = posixpath.normpath(path)
+        parts = [part for part in normalized.split("/") if part]
+        resolved = self.site_root
+
+        for part in parts:
+            if part in {os.curdir, os.pardir} or os.path.dirname(part):
+                continue
+            resolved = resolved / part
+
+        if trailing_slash:
+            resolved = resolved / ""
+
+        return str(resolved)
 
     def cache_control_for_request(self) -> str:
         split = parse.urlsplit(self.path or "/")
@@ -177,7 +204,7 @@ class AppHandler(SimpleHTTPRequestHandler):
         if self.command not in {"GET", "HEAD"} or path.startswith("/api/") or path.startswith("/proxy/"):
             return "no-store, max-age=0"
 
-        if path in {"/", "/index.html", "/app.html"} or path.endswith(".html"):
+        if path in {"/", "/index.html"} or path.endswith(".html"):
             return "public, max-age=0, must-revalidate"
 
         if path.endswith("manifest.json"):
@@ -565,6 +592,11 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--host", default="127.0.0.1", help="Bind host")
     parser.add_argument("--port", type=int, default=4173, help="Bind port")
     parser.add_argument(
+        "--site-root",
+        default=str(DEFAULT_SITE_ROOT),
+        help="Directory to serve frontend assets from (default: dist)",
+    )
+    parser.add_argument(
         "--unsplash-upstream-proxy",
         default=os.environ.get("UNSPLASH_UPSTREAM_PROXY", ""),
         help="Optional upstream HTTP proxy for Unsplash proxy requests",
@@ -598,6 +630,9 @@ def parse_args() -> argparse.Namespace:
 def main() -> int:
     args = parse_args()
     load_dotenv()
+    site_root = Path(args.site_root).expanduser().resolve()
+    if not site_root.exists() or not site_root.is_dir():
+        raise SystemExit(f'site_root_not_found: "{site_root}"')
 
     AppHandler.telegram_token = os.environ.get("TELEGRAM_BOT_TOKEN", "").strip()
     AppHandler.telegram_chat_id = os.environ.get("TELEGRAM_CHAT_ID", "").strip()
@@ -608,12 +643,14 @@ def main() -> int:
     AppHandler.unsplash_proxy_timeout = max(2.0, float(args.unsplash_proxy_timeout))
     AppHandler.unsplash_proxy_cache_ttl = max(0, int(args.unsplash_proxy_cache_ttl))
     AppHandler.unsplash_proxy_insecure = bool(args.unsplash_proxy_insecure)
+    AppHandler.site_root = site_root
 
     httpd = ThreadingHTTPServer((args.host, args.port), AppHandler)
     print(json.dumps({
         "status": "started",
         "host": args.host,
         "port": args.port,
+        "site_root": str(AppHandler.site_root),
         "telegram_enabled": bool(AppHandler.telegram_token and AppHandler.telegram_chat_id),
         "telegram_insecure": AppHandler.telegram_insecure,
         "telegram_proxy": bool(AppHandler.telegram_http_proxy),

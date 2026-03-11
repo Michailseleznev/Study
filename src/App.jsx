@@ -4,7 +4,6 @@ import FloatingCta from "./components/layout/FloatingCta";
 import Footer from "./components/layout/Footer";
 import Header from "./components/layout/Header";
 import BookingModal from "./components/overlays/BookingModal";
-import Lightbox from "./components/overlays/Lightbox";
 import ContactSection from "./components/sections/ContactSection";
 import FaqSection from "./components/sections/FaqSection";
 import HeroSection from "./components/sections/HeroSection";
@@ -24,7 +23,6 @@ export default function App() {
     bookingValues,
     closeBooking,
     closeDrawer,
-    closeLightbox,
     closeServices,
     drawerRef,
     dynamicWord,
@@ -42,11 +40,8 @@ export default function App() {
     isDrawerOpen,
     isServicesOpen,
     leadPending,
-    lightbox,
-    lightboxRef,
     openBooking,
     openDrawer,
-    openLightbox,
     prefersReducedMotion,
     reviewIndex,
     servicesRef,
@@ -85,7 +80,6 @@ export default function App() {
         <HeroSection dynamicWord={dynamicWord} prefersReducedMotion={prefersReducedMotion} trackEvent={trackEvent} />
         <PortfolioSection
           activeTab={activeTab}
-          onOpenLightbox={openLightbox}
           onTabChange={handleTabChange}
           trackEvent={trackEvent}
           unsplashState={unsplashState}
@@ -108,13 +102,6 @@ export default function App() {
         <Footer trackEvent={trackEvent} />
       </main>
 
-      <Lightbox
-        lightbox={lightbox}
-        lightboxRef={lightboxRef}
-        onClose={closeLightbox}
-        prefersReducedMotion={prefersReducedMotion}
-        trackEvent={trackEvent}
-      />
       <FloatingCta prefersReducedMotion={prefersReducedMotion} trackEvent={trackEvent} />
     </>
   );

@@ -7,9 +7,15 @@
     "dev": "vite --host 127.0.0.1 --port 4173",
     "build": "vite build",
     "preview": "vite preview --host 127.0.0.1 --port 4173",
+    "localhost:start": "./start-localhost.command",
+    "localhost:stop": "./stop-localhost.command",
+    "localhost:status": "./scripts/localhost_status.sh",
+    "localhost80:enable": "./enable-localhost80.command",
+    "localhost80:disable": "./disable-localhost80.command",
+    "localhost80:status": "./scripts/localhost80_status.sh",
     "test": "node --test",
     "test:e2e": "playwright test --config=playwright.config.mjs",
-    "sync:unsplash": "python3 scripts/unsplash_sync.py --username mihmihfoto --count 32 --proxy-base http://127.0.0.1:4173/proxy/unsplash --clean",
+    "sync:unsplash": "python3 scripts/unsplash_sync.py --username mihmihfoto --count 32 --proxy-base http://localhost:4173/proxy/unsplash --clean",
     "optimize:images": "python3 scripts/optimize_images.py"
   },
   "dependencies": {

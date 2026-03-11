@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import { isLowPerfDevice, isMobileViewport } from "../lib/deviceProfile";
 
 let responsiveManifestData = null;
 let responsiveManifestRequest = null;
@@ -6,17 +7,6 @@ let responsiveManifestDisabled = false;
 let responsiveManifestWarned = false;
 let preloaderInitialized = false;
 let serviceWorkerRegistered = false;
-
-function isMobileViewport() {
-  return Boolean(window.matchMedia && window.matchMedia("(max-width: 980px)").matches);
-}
-
-function isLowPerfDevice() {
-  return Boolean(
-    (navigator.hardwareConcurrency && navigator.hardwareConcurrency <= 4)
-    || (navigator.deviceMemory && navigator.deviceMemory <= 4)
-  );
-}
 
 function getMotionBudget() {
   if (isMobileViewport() && isLowPerfDevice()) {

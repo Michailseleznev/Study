@@ -6,3 +6,8 @@ dist/
 .env
 playwright-report/
 test-results/
+.playwright-cli/
+output/
+tmp/
+__pycache__/
+*.pyc

@@ -23,13 +23,6 @@ const INITIAL_FORM_VALUES = {
   comment: ""
 };
 
-const INITIAL_LIGHTBOX = {
-  open: false,
-  src: "",
-  title: "Preview",
-  desc: ""
-};
-
 function isTouchHoverDevice() {
   return Boolean(window.matchMedia && window.matchMedia("(hover: hover)").matches);
 }
@@ -49,11 +42,9 @@ export function useSiteController() {
   const [formValues, setFormValues] = useState(INITIAL_FORM_VALUES);
   const [leadPending, setLeadPending] = useState(false);
   const [toastMessage, setToastMessage] = useState("");
-  const [lightbox, setLightbox] = useState(INITIAL_LIGHTBOX);
 
   const drawerRef = useRef(null);
   const bookingRef = useRef(null);
-  const lightboxRef = useRef(null);
   const servicesRef = useRef(null);
 
   const activeSectionId = useActiveSection(ACTIVE_SECTION_IDS);
@@ -71,7 +62,6 @@ export function useSiteController() {
 
   useFocusTrap(drawerRef, isDrawerOpen);
   useFocusTrap(bookingRef, isBookingOpen);
-  useFocusTrap(lightboxRef, lightbox.open);
 
   useEffect(() => {
     if (prefersReducedMotion) return undefined;
@@ -110,11 +100,11 @@ export function useSiteController() {
   }, [toastMessage]);
 
   useEffect(() => {
-    document.body.style.overflow = (isDrawerOpen || isBookingOpen || lightbox.open) ? "hidden" : "";
+    document.body.style.overflow = (isDrawerOpen || isBookingOpen) ? "hidden" : "";
     return () => {
       document.body.style.overflow = "";
     };
-  }, [isBookingOpen, isDrawerOpen, lightbox.open]);
+  }, [isBookingOpen, isDrawerOpen]);
 
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -134,10 +124,6 @@ export function useSiteController() {
     const handleEscape = (event) => {
       if (event.key !== "Escape") return;
 
-      if (lightbox.open) {
-        setLightbox((current) => ({ ...current, open: false, src: "", desc: "" }));
-        return;
-      }
       if (isBookingOpen) {
         setBookingOpen(false);
         return;
@@ -155,7 +141,7 @@ export function useSiteController() {
     return () => {
       window.removeEventListener("keydown", handleEscape);
     };
-  }, [isBookingOpen, isDrawerOpen, isServicesOpen, lightbox.open]);
+  }, [isBookingOpen, isDrawerOpen, isServicesOpen]);
 
   useEffect(() => {
     if (!isBookingOpen) return undefined;
@@ -205,25 +191,6 @@ export function useSiteController() {
 
   const closeBooking = () => {
     setBookingOpen(false);
-  };
-
-  const closeLightbox = () => {
-    setLightbox((current) => ({
-      ...current,
-      open: false,
-      src: "",
-      desc: ""
-    }));
-  };
-
-  const openLightbox = ({ category, desc, src, title }) => {
-    setLightbox({
-      open: true,
-      src,
-      title: category ? `${title || "Preview"} • ${category}` : (title || "Preview"),
-      desc: desc || ""
-    });
-    trackEvent("lightbox_open", { category: category || "unknown" });
   };
 
   const handleTabChange = (tabId) => {
@@ -351,7 +318,6 @@ export function useSiteController() {
     bookingValues,
     closeBooking,
     closeDrawer,
-    closeLightbox,
     closeServices,
     drawerRef,
     dynamicWord: HERO_WORDS[dynamicWordIndex],
@@ -369,11 +335,8 @@ export function useSiteController() {
     isDrawerOpen,
     isServicesOpen,
     leadPending,
-    lightbox,
-    lightboxRef,
     openBooking,
     openDrawer,
-    openLightbox,
     prefersReducedMotion,
     reviewIndex,
     servicesRef,

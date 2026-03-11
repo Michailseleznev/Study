@@ -17,12 +17,14 @@ test.describe("mobile glow coverage", function(){
     var coverage = await page.evaluate(function(){
       var hero = document.querySelector(".hero-media");
       var glow = document.getElementById("tabGlow");
-      if (!hero || !glow) return null;
+      var grid = document.getElementById("grid");
+      if (!hero || !glow || !grid) return null;
 
       var docEl = document.documentElement;
       var body = document.body;
       var scrollTop = window.scrollY || window.pageYOffset || 0;
       var heroBottomDoc = hero.getBoundingClientRect().bottom + scrollTop;
+      var gridTopDoc = grid.getBoundingClientRect().top + scrollTop;
       var siteBottomDoc = Math.max(
         (docEl && docEl.scrollHeight) || 0,
         (docEl && docEl.offsetHeight) || 0,
@@ -34,14 +36,16 @@ test.describe("mobile glow coverage", function(){
       var glowTop = parseFloat(glow.style.top || "0");
       var glowWidth = parseFloat(glow.style.width || "0");
       var glowHeight = parseFloat(glow.style.height || "0");
+      var glowCenterDoc = gridTopDoc + glowTop;
 
       return {
         isMobile: window.matchMedia("(max-width: 980px)").matches,
+        gridTopDoc: gridTopDoc,
         glowTop: glowTop,
         glowWidth: glowWidth,
         glowHeight: glowHeight,
-        glowStartDoc: glowTop - (glowWidth / 2),
-        glowEndDoc: glowTop + (glowWidth / 2),
+        glowStartDoc: glowCenterDoc - (glowWidth / 2),
+        glowEndDoc: glowCenterDoc + (glowWidth / 2),
         heroBottomDoc: heroBottomDoc,
         siteBottomDoc: siteBottomDoc
       };
